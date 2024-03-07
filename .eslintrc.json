@@ -1,0 +1,75 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "ignorePatterns": ["./.eslintignore"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.js", "*.cjs", "*.mjs"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint", "import"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": 0,
+        "quotes": ["error", "single"],
+        "no-multi-spaces": ["error"],
+        "no-trailing-spaces": "error",
+        "max-len": ["error", 120],
+        "key-spacing": ["error", { "afterColon": true }],
+        "arrow-parens": ["error", "as-needed"],
+        "operator-linebreak": [
+          "error",
+          "after",
+          {
+            "overrides": {
+              "?": "after",
+              ":": "after",
+              "&": "after",
+              "&&": "after",
+              "|": "after",
+              "||": "after"
+            }
+          }
+        ],
+        "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+        "arrow-body-style": ["error", "as-needed"],
+        "prefer-arrow-callback": "error",
+        "array-callback-return": "error",
+        "arrow-spacing": "error",
+        "grouped-accessor-pairs": "error",
+        "curly": "error",
+        "no-template-curly-in-string": "error",
+        "no-dupe-args": "error",
+        "no-dupe-class-members": "error",
+        "no-dupe-keys": "error",
+        "sort-imports": [
+          "error",
+          {
+            "ignoreCase": true,
+            "allowSeparatedGroups": true
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["../../../*", "src/*"]
+          }
+        ],
+        "object-shorthand": "error"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "rules": {
+        "max-len": ["error", 120]
+      }
+    }
+  ]
+}
