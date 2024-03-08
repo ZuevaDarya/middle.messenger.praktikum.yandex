@@ -1,0 +1,110 @@
+@import '../../shared/styles/fonts.scss';
+@import '../../shared/styles/variables.scss';
+
+.login-page-container {
+  width: 340px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 50px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  border-radius: 12px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+
+  background-color: $text-bgcolor;
+}
+
+.form-title {
+  display: block;
+  margin-bottom: 40px;
+
+  font: $font-title;
+  color: $title-color;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+    margin-bottom: 160px;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
+    margin-bottom: 14px;
+  }
+}
+
+.input {
+  font-family: $font-body;
+  font: $font-regular;
+
+  border: none;
+  border-bottom: 1px solid $input-underline-color;
+
+  padding-top: 12px;
+  padding-bottom: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+
+
+  &::placeholder {
+    color: $text-light-color;
+  }
+
+  &:focus {
+    outline-color: $input-focus-outline-color;
+  }  
+
+  &:hover {
+    background-color: $input-hover-color;
+  }
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  border: none;
+  border-radius: 100px;
+  padding: 12px 70px;
+
+  background-color: $button-bg-color;
+  color: $button-text-color;
+
+  font-family: $font-body;
+  font: $font-regular;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $input-focus-outline-color;
+  }
+}
+
+.link {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+
