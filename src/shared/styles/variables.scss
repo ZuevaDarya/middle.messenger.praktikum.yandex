@@ -1,0 +1,36 @@
+$font-body: Inter, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+
+$background-color: white;
+
+$font-weight-light: 300;
+$font-weight-medium: 400;
+$font-weight-regular: 500;
+$font-weight-semibold: 600;
+
+$font-large: #{$font-weight-regular} 40px/40px #{$font-body};
+$font-title: #{$font-weight-semibold} 20px/20px #{$font-body};
+$font-regular: #{$font-weight-regular} 13px/13px #{$font-body};
+$font-small: #{$font-weight-medium} 12px/12px #{$font-body};
+$font-micro: #{$font-weight-light} 10px/10px #{$font-body};
+$font-nano: #{$font-weight-regular} 9px/9px #{$font-body};
+
+$text-bgcolor: #ffffff;
+$text-color: #000000;
+$text-light-color: #999999;
+
+
+$title-color: #1e1e1e;
+
+$message-num-bg-color: #DF6675; 
+
+$button-bg-color: #31BDBE;
+$button-text-color: #ffffff;
+
+$input-underline-color: #31BDBE;
+$input-focus-outline-color: #298586;
+$input-hover-color: rgba($text-color, 0.1);
+
+$link-color: #298586; 
+$link-hover-color: #034748;
+
+$seleted-message-bg: #31BDBE;      
