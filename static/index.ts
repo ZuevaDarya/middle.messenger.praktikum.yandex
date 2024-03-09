@@ -1,3 +1,4 @@
+import * as Components from '../src/components';
 import * as Pages from '../src/pages';
 import Handlebars from 'handlebars';
 
@@ -8,6 +9,10 @@ type Page = {
 const pages: Page = {
   'login': [Pages.Login]
 };
+
+Object.entries(Components).forEach(([name, component]) => {
+  Handlebars.registerPartial(name, component);
+});
 
 function navigate(page: string) {
   const [source, args] = pages[page];
