@@ -1,0 +1,9 @@
+@import '../../shared/styles/variables.scss';
+
+.form-title {
+  display: block;
+  margin-bottom: 40px;
+
+  font: $font-title;
+  color: $title-color;
+}
