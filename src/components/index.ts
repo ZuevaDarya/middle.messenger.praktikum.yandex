@@ -3,3 +3,7 @@ export { InputField } from './input-field';
 export { Button } from './button';
 export { Link } from './link';
 export { FormTitle } from './form-title';
+export { PageContainer } from './page-container';
+export { Form } from './form';
+export { FormContent } from './form-content';
+export { FormFooter } from './form-footer';
