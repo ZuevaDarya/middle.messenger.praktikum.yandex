@@ -1,0 +1,19 @@
+@import '../../shared/styles/variables.scss';
+
+.page-container {
+  width: 340px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 50px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  border-radius: 12px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+
+  background-color: $text-bgcolor;
+}
