@@ -1,0 +1,22 @@
+@import '../../shared/styles/variables.scss';
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  border: none;
+  border-radius: 100px;
+  padding: 12px 70px;
+
+  background-color: $button-bg-color;
+  color: $button-text-color;
+
+  font-family: $font-body;
+  font: $font-regular;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $input-focus-outline-color;
+  }
+}
