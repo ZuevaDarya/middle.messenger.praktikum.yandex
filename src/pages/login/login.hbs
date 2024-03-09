@@ -1,16 +1,16 @@
-<div class="login-page-container">
+{{#> PageContainer}}
   {{> FormTitle text="Вход"}}
 
-  <form class="login-form">
-    <div class="login-form__content">
+  {{#> Form}}
+    {{#> FormContent className="login-form-content"}}
       {{> InputField type="text" name="login" placeholder="Логин" title="Логин" }}
       {{> InputField type="password" name="password" placeholder="Пароль" title="Пароль"}}
-    </div>
+    {{/ FormContent}}
 
-    <div class="login-form__footer">
-      {{> Button className="login-form__button" text="Авторизироваться"}}
-      {{> Link url="" text="Нет аккаунта?"}}
-    </div>
-  </form>
-</div>
+    {{#> FormFooter}}
+      {{> Button className="form__button" text="Авторизироваться"}}
+      {{> Link url="" text="Нет аккаунта?" page="registration"}}
+    {{/ FormFooter}}
+  {{/ Form}}
+{{/ PageContainer}}
 
