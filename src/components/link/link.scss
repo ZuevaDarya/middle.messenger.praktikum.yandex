@@ -1,0 +1,9 @@
+@import '../../shared/styles/variables.scss';
+
+.link {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
