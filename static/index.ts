@@ -7,7 +7,8 @@ type Page = {
 }
 
 const pages: Page = {
-  'login': [Pages.Login]
+  'login': [Pages.Login],
+  'registration': [Pages.Registration]
 };
 
 Object.entries(Components).forEach(([name, component]) => {
