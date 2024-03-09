@@ -1,15 +1,15 @@
 <div class="login-page-container">
-  <h1 class="form-title">Вход</h1>
+  {{> FormTitle text="Вход"}}
 
-  <form action="" class="login-form">
+  <form class="login-form">
     <div class="login-form__content">
-      <input type="text" placeholder="Логин" name="login" class="input">
-      <input type="password" placeholder="Пароль" name="password" class="input">
+      {{> InputField type="text" name="login" placeholder="Логин" title="Логин" }}
+      {{> InputField type="password" name="password" placeholder="Пароль" title="Пароль"}}
     </div>
 
     <div class="login-form__footer">
-      <button type="submit" class="login-form__button button">Авторизироваться</button>
-      <a href="#" class="link">Нет аккаунта?</a>
+      {{> Button className="login-form__button" text="Авторизироваться"}}
+      {{> Link url="" text="Нет аккаунта?"}}
     </div>
   </form>
 </div>
