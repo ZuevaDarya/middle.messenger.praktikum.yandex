@@ -1,0 +1,19 @@
+@import '../../shared/styles/variables.scss';
+
+.chat-notice {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+
+  background-color: $chat-message-block-bg-color;
+  color: $chat-message-block-text-color;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 14px;
+  padding-left: 14px;
+
+  margin: auto;
+
+  border-radius: 10px;
+}
