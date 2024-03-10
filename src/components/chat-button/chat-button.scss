@@ -1,0 +1,30 @@
+@import '../../shared/styles/variables.scss';
+
+.chat-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  display: inline-block;
+
+  border: none;
+  border-radius: 100px;
+
+  background-color: $button-bg-color;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: $button-text-color;
+
+  &__add-file-btn {
+    background-image: url('../../../static/assets/icons/add-file.svg');
+  }
+
+  &__send-message-btn {
+    background-image: url('../../../static/assets/icons/arrow.svg');
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $button-hover-bg-color;
+  }
+}
