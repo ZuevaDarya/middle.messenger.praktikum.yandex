@@ -3,8 +3,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../../assets/fonts/Inter-Regular.woff2") format("woff2"),
-    url("../../assets/fonts/Inter-Regular.woff") format("woff");
+  src: url("../../../static/assets/fonts/Inter-Medium.woff2") format("woff2"),
+    url("../../../static/assets/fonts/Inter-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -12,8 +12,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../../assets/fonts/Inter-Medium.woff2") format("woff2"),
-    url("../../assets/fonts/Inter-Medium.woff") format("woff");
+  src: url("../../../static/assets/fonts/Inter-Medium.woff2") format("woff2"),
+    url("../../../static/assets/fonts/Inter-Medium.woff") format("woff");
 }
 
 
@@ -22,6 +22,6 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../../assets/fonts/Inter-SemiBold.woff2") format("woff2"),
-    url("../../assets/fonts/Inter-SemiBold.woff") format("woff");
+  src: url("../../../static/assets/fonts/Inter-SemiBold.woff2") format("woff2"),
+    url("../../../static/assets/fonts/Inter-SemiBold.woff") format("woff");
 }
