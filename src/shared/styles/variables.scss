@@ -7,10 +7,12 @@ $background-color: white;
 $font-weight-light: 300;
 $font-weight-medium: 400;
 $font-weight-regular: 500;
-$font-weight-semibold: 600;
+$font-weight-bold: 600;
+$font-weight-semibold: 700;
 
 $font-large: #{$font-weight-regular} 40px/40px #{$font-body};
-$font-title: #{$font-weight-semibold} 20px/20px #{$font-body};
+$font-title: #{$font-weight-bold} 20px/20px #{$font-body};
+$font-chat-user-name: #{$font-weight-semibold} 13px/13px #{$font-body};
 $font-regular: #{$font-weight-regular} 13px/13px #{$font-body};
 $font-small: #{$font-weight-medium} 12px/12px #{$font-body};
 $font-micro: #{$font-weight-light} 10px/10px #{$font-body};
@@ -20,12 +22,10 @@ $text-bgcolor: #ffffff;
 $text-color: #000000;
 $text-light-color: #999999;
 
-
 $title-color: #1e1e1e;
 
-$message-num-bg-color: #DF6675; 
-
 $button-bg-color: #31BDBE;
+$button-hover-bg-color:#298586;
 $button-text-color: #ffffff;
 
 $input-underline-color: #31BDBE;
@@ -35,4 +35,22 @@ $input-hover-color: rgba($text-color, 0.1);
 $link-color: #298586; 
 $link-hover-color: #034748;
 
-$seleted-message-bg: #31BDBE;      
+$seleted-message-bg-color: #31BDBE;  
+$selected-message-text-color: #ffffff;    
+$message-num-bg-color: #DF6675; 
+$message-num-color: #ffffff; 
+
+$chat-search-bg-color: #D9D9D9;
+$chat-search-focus-border-color: #999999;
+$chat-right-bg-color: #F1F1F1;
+$chat-right-header-bg-color: #ffffff;
+$chat-border-color: #E1E1E1;
+$chat-message-block-bg-color: rgba(#31BDBE, 0.7);
+$chat-message-block-text-color: #ffffff;
+$chat-list-item-border-color: #F1F1F1;
+$chat-list-item-hover-bg-color: rgba(#31BDBE, 0.1);
+$chat-send-message-border-color: #BEC0C8;
+
+$input-shadow-color: rgba(#000000, 0.1);
+
+$settings-button-hover-bg-color: rgba(#31BDBE, 0.2);
