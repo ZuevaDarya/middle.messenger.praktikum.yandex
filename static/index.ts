@@ -10,6 +10,9 @@ const pages: Page = {
   'login': [Pages.Login],
   'registration': [Pages.Registration],
   'chat': [Pages.Chat],
+  'profile': [Pages.Profile],
+  'profileData': [Pages.ProfileData],
+  'profilePassword': [Pages.ProfilePassword]
 };
 
 Object.entries(Components).forEach(([name, component]) => {
