@@ -17,3 +17,7 @@ export { ChatListItemMessage } from './chat-list-item-message';
 export { ChatList } from './chat-list';
 export { ChatSendMessageBlock } from './chat-send-message-block';
 export { ChatButton } from './chat-button';
+export { ProfileItem } from './profile-item';
+export { ProfileCloseButton } from './profile-close-button';
+export { ProfileInput } from './profile-input';
+export { ProfileAvatar } from './profile-avatar';
