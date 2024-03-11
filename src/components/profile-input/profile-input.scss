@@ -1,0 +1,25 @@
+@import '../../shared/styles/variables.scss';
+
+.profile-item__input {
+  width: 100%;
+  max-width: 250px;
+  border: none;
+
+  text-align: right;
+  margin-left: 50px;
+  padding-left: 3px;
+  padding-right: 3px;
+
+
+  &::placeholder {
+    color: $text-light-color;
+  }
+
+  &:focus {
+    outline-color: $input-focus-outline-color;
+  }  
+
+  &:hover {
+    background-color: $input-hover-color;
+  }
+}
