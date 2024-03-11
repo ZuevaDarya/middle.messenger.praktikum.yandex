@@ -1,0 +1,83 @@
+@import '../../shared/styles/variables.scss';
+
+.profile-item {
+  position: relative;
+  width: 510px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+
+  font: $font-regular;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &__title {
+    font: $font-regular;
+    margin: auto 0;
+  }
+
+  &__data {
+    color: $text-light-color;
+  }
+
+  &_border-green {
+    border-color: $profile-item-border-color-green;
+  }
+
+  &_border-grey {
+    border-color: $profile-item-border-color-grey;
+  }
+
+  &_with-margin {
+    margin-bottom: 30px;
+  }
+
+  &_text-green {
+    color: $profile-settings-text-color-green;
+
+    &:hover {
+      cursor: pointer;
+      color: $link-hover-color;
+      background-color: $close-profile-block-bg-color;
+    }
+  }
+
+  &_text-red {
+    color: $profile-settings-text-color-red;
+
+    &:hover {
+      cursor: pointer;
+      color: $close-profile-btn-hover-color;
+      background-color: $close-profile-block-bg-color;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: 5px;
+    left: -35px;
+  }
+}
+
+.before-profile::before {
+  content: url('../../../static/assets/icons/user-profile.svg');
+}
+
+.before-email:before {
+  content: url('../../../static/assets/icons/mail.svg');
+}
+
+.before-login:before {
+  content: url('../../../static/assets/icons/login.svg');
+}
+
+.before-chat-name:before {
+  content: url('../../../static/assets/icons/entypo_email.svg');
+}
+
+.before-phone:before {
+  content: url('../../../static/assets/icons/phone.svg');
+}
