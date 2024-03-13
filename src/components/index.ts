@@ -21,3 +21,5 @@ export { ProfileItem } from './profile-item';
 export { ProfileCloseButton } from './profile-close-button';
 export { ProfileInput } from './profile-input';
 export { ProfileAvatar } from './profile-avatar';
+export { Error } from './error';
+export { Navigation } from './navigation';
