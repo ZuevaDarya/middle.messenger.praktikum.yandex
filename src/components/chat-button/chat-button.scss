@@ -16,11 +16,11 @@
   color: $button-text-color;
 
   &__add-file-btn {
-    background-image: url('../../../static/assets/icons/add-file.svg');
+    background-image: url('../../../public/icons/add-file.svg');
   }
 
   &__send-message-btn {
-    background-image: url('../../../static/assets/icons/arrow.svg');
+    background-image: url('../../../public/icons/arrow.svg');
   }
 
   &:hover {
