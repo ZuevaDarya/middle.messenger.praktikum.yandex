@@ -8,96 +8,95 @@
   align-items: flex-end;
   gap: 14px;
 
-		&__button {
-      position: relative;
-      max-width: 170px;
+  &__button {
+    position: relative;
+    max-width: 170px;
 
-      padding-top: 7px;
-      padding-bottom: 7px;
-      padding-left: 45px;
-      padding-right: 45px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 45px;
+    padding-right: 45px;
 
-      border: none;
-      border-radius: 100px;
+    border: none;
+    border-radius: 100px;
 
-      background-color: $button-bg-color;
-      color: $button-text-color;
+    background-color: $button-bg-color;
+    color: $button-text-color;
 
-      &::after {
-        content: url("../../../public/icons/add-chat.svg");
-        position: absolute;
-        top: 4px;
-        right: 4px;
-      }
-
-      &:hover {
-        cursor: pointer;
-        background-color: $button-hover-bg-color;
-      }
-		}
-
-    &__search {
-      position: relative;
-      width: 100%;
-    }
-
-		&__search-input {
-      position: relative;
-      width: 100%;
-
-      padding-top: 7px;
-      padding-bottom: 7px;
-      padding-left: 15px;
-      padding-right: 30px;
-
-      border: none;
-      border-radius: 100px;
-
-      background-color: $chat-search-bg-color;
-
-      font: $font-small;
-      
-      &::placeholder {
-        color: $text-light-color;
-      }
-
-      &:focus {
-        outline-color: $chat-search-focus-border-color;
-      }  
-    
-      &:hover {
-        background-color: $input-hover-color;
-      }
-
-      &::-webkit-search-decoration,
-      &::-webkit-search-cancel-button,
-      &::-webkit-search-results-button,
-      &::-webkit-search-results-decoration {
-        -webkit-appearance:none;
-      }
-		}
-
-		&__search-button {
+    &::after {
+      content: url('../../../public/icons/add-chat.svg');
       position: absolute;
-      width: 20px;
-      height: 20px;
       top: 4px;
       right: 4px;
+    }
 
-      padding: 3px;
+    &:hover {
+      cursor: pointer;
+      background-color: $button-hover-bg-color;
+    }
+  }
 
-      border: none;
-      border-radius: 100px;
+  &__search {
+    position: relative;
+    width: 100%;
+  }
 
-      background-color: $background-color;
+  &__search-input {
+    position: relative;
+    width: 100%;
 
-      &:hover {
-        cursor: pointer;
-      }
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 15px;
+    padding-right: 30px;
 
-      &::after {
-        content: url('../../../public/icons/search.svg');
+    border: none;
+    border-radius: 100px;
 
-      }
-		}
+    background-color: $chat-search-bg-color;
+
+    font: $font-small;
+
+    &::placeholder {
+      color: $text-light-color;
+    }
+
+    &:focus {
+      outline-color: $chat-search-focus-border-color;
+    }
+
+    &:hover {
+      background-color: $input-hover-color;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
+  }
+
+  &__search-button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 4px;
+    right: 4px;
+
+    padding: 3px;
+
+    border: none;
+    border-radius: 100px;
+
+    background-color: $background-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::after {
+      content: url('../../../public/icons/search.svg');
+    }
+  }
 }

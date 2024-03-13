@@ -12,14 +12,13 @@
   padding-left: 7px;
   padding-right: 7px;
 
-
   &::placeholder {
     color: $text-light-color;
   }
 
   &:focus {
     outline-color: $input-focus-outline-color;
-  }  
+  }
 
   &:hover {
     background-color: $input-hover-color;

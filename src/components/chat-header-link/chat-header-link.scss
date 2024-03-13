@@ -4,14 +4,14 @@
   position: relative;
 
   font: $font-small;
-  color: $text-color;     
+  color: $text-color;
 
   &::after {
-    content: url("../../../public/icons/small-arrow.svg");
-  
-    position: absolute;   
-    top: 1px;  
-    right: -10px;    
+    content: url('../../../public/icons/small-arrow.svg');
+
+    position: absolute;
+    top: 1px;
+    right: -10px;
   }
 
   &:hover {
@@ -19,6 +19,6 @@
   }
 
   &:hover:after {
-    content: url("../../../public/icons/small-hover-arrow.svg");
+    content: url('../../../public/icons/small-hover-arrow.svg');
   }
 }

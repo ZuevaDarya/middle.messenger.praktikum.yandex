@@ -4,26 +4,55 @@
     "node": true,
     "browser": true
   },
-  "plugins": ["@typescript-eslint", "import"],
-  "ignorePatterns": ["./.eslintignore"],
+  "plugins": [
+    "@typescript-eslint",
+    "import"
+  ],
+  "ignorePatterns": [
+    "./.eslintignore"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.js", "*.cjs", "*.mjs"],
+      "files": [
+        "*.ts",
+        "*.js",
+        "*.cjs",
+        "*.mjs"
+      ],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:import/typescript"
       ],
       "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint", "import"],
+      "plugins": [
+        "@typescript-eslint",
+        "import"
+      ],
       "rules": {
         "@typescript-eslint/no-var-requires": 0,
-        "quotes": ["error", "single"],
-        "no-multi-spaces": ["error"],
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "no-multi-spaces": [
+          "error"
+        ],
         "no-trailing-spaces": "error",
-        "max-len": ["error", 120],
-        "key-spacing": ["error", { "afterColon": true }],
-        "arrow-parens": ["error", "as-needed"],
+        "max-len": [
+          "error",
+          120
+        ],
+        "key-spacing": [
+          "error",
+          {
+            "afterColon": true
+          }
+        ],
+        "arrow-parens": [
+          "error",
+          "as-needed"
+        ],
         "operator-linebreak": [
           "error",
           "after",
@@ -38,8 +67,17 @@
             }
           }
         ],
-        "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
-        "arrow-body-style": ["error", "as-needed"],
+        "func-style": [
+          "error",
+          "declaration",
+          {
+            "allowArrowFunctions": true
+          }
+        ],
+        "arrow-body-style": [
+          "error",
+          "as-needed"
+        ],
         "prefer-arrow-callback": "error",
         "array-callback-return": "error",
         "arrow-spacing": "error",
@@ -59,16 +97,24 @@
         "no-restricted-imports": [
           "error",
           {
-            "patterns": ["../../../*", "src/*"]
+            "patterns": [
+              "../../../*",
+              "src/*"
+            ]
           }
         ],
         "object-shorthand": "error"
       }
     },
     {
-      "files": ["*.html"],
+      "files": [
+        "*.html"
+      ],
       "rules": {
-        "max-len": ["error", 120]
+        "max-len": [
+          "error",
+          120
+        ]
       }
     }
   ]
