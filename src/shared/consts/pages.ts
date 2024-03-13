@@ -1,7 +1,7 @@
 import * as Pages from '../../pages';
 
 type Page = {
-  [key: string] : unknown[];
+  [key: string]: unknown[];
 }
 
 export const pages: Page = {
