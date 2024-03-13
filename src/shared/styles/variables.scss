@@ -18,6 +18,10 @@ $font-small: #{$font-weight-medium} 12px/12px #{$font-body};
 $font-micro: #{$font-weight-light} 10px/10px #{$font-body};
 $font-nano: #{$font-weight-regular} 9px/9px #{$font-body};
 
+$font-error-code: #{$font-weight-bold} 128px/128px #{$font-body};
+$font-error-title: #{$font-weight-medium} 24px/24px #{$font-body};
+$font-error-text: #{$font-weight-regular} 20px/20px #{$font-body};
+
 $text-bgcolor: #ffffff;
 $text-color: #000000;
 $text-light-color: #999999;
@@ -65,3 +69,5 @@ $profile-item-border-color-grey: #EAEAEA;
 $profile-settings-text-color-green: #298586;
 $profile-settings-hover-text-color: #298586;
 $profile-settings-text-color-red: #DF6675;
+
+$error-text-color: #DF6675;
