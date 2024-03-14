@@ -29,3 +29,7 @@
 *Навигация по страницам доступнам по кнопкам или же по ссылкам:*
 
 ![alt text](image.png)
+
+### Ссылки на PR
+
+Спринт 1: [PR] (https://github.com/ZuevaDarya/middle.messenger.praktikum.yandex/pull/7)
