@@ -32,4 +32,4 @@
 
 ### Ссылки на PR
 
-Спринт 1: [PR] (https://github.com/ZuevaDarya/middle.messenger.praktikum.yandex/pull/7)
+Спринт 1: [PR](https://github.com/ZuevaDarya/middle.messenger.praktikum.yandex/pull/7)
