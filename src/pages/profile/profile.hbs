@@ -1,21 +1,23 @@
-{{> Navigation}}
+<main>
+  {{> Navigation}}
 
-<div class="profile">
-  {{> ProfileCloseButton page="chat" }}
-  {{> ProfileAvatar}}
+  <div class="profile">
+    {{> ProfileCloseButton page="chat" }}
+    {{> ProfileAvatar}}
 
-  <div class="profile-content">
-    {{> ProfileItem title="Имя" data="Иван" className="profile-item_border-green before-profile"}}
-    {{> ProfileItem title="Фамилия" data="Иванов" className="profile-item_border-green profile-item_with-margin"}}
-    {{> ProfileItem title="Почта" data="pochta@yandex.ru" className="profile-item_border-green before-email"}}
-    {{> ProfileItem title="Логин" data="ivanivanov" className="profile-item_border-green before-login"}}
-    {{> ProfileItem title="Имя в чате" data="Иван" className="profile-item_border-green before-chat-name"}}
-    {{> ProfileItem title="Телефон" data="+7 (909) 967 30 30" className="profile-item_border-green before-phone"}}
+    <div class="profile-content">
+      {{> ProfileItem title="Имя" data="Иван" className="profile-item_border-green before-profile"}}
+      {{> ProfileItem title="Фамилия" data="Иванов" className="profile-item_border-green profile-item_with-margin"}}
+      {{> ProfileItem title="Почта" data="pochta@yandex.ru" className="profile-item_border-green before-email"}}
+      {{> ProfileItem title="Логин" data="ivanivanov" className="profile-item_border-green before-login"}}
+      {{> ProfileItem title="Имя в чате" data="Иван" className="profile-item_border-green before-chat-name"}}
+      {{> ProfileItem title="Телефон" data="+7 (909) 967 30 30" className="profile-item_border-green before-phone"}}
+    </div>
+
+    <div class="profile__settings">
+      {{> ProfileItem title="Изменить данные" className="profile-item_border-grey profile-item_text-green" page="profileData"}}
+      {{> ProfileItem title="Изменить пароль" className="profile-item_border-grey profile-item_text-green" page="profilePassword"}}
+      {{> ProfileItem title="Выйти" className="profile-item_border-grey profile-item_text-red" page="login"}}
+    </div>
   </div>
-
-  <div class="profile__settings">
-    {{> ProfileItem title="Изменить данные" className="profile-item_border-grey profile-item_text-green" page="profileData"}}
-    {{> ProfileItem title="Изменить пароль" className="profile-item_border-grey profile-item_text-green" page="profilePassword"}}
-    {{> ProfileItem title="Выйти" className="profile-item_border-grey profile-item_text-red" page="login"}}
-  </div>
-</div>
+</main>
