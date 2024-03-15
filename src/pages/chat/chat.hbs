@@ -1,0 +1,43 @@
+<main class="chat-page-main">
+  <div class="chat-container">
+    <div class="chat-left-container">
+      <div class="chat-header chat-left-header">
+        <div class="chat-left-header__profile">
+          {{> Avatar 
+            src="/img/avatar.png"
+            alt="Аватар профиля пользователя"
+          }}
+
+          {{> ChatHeaderLink text="Профиль" page="profile"}}
+        </div>
+
+        {{> ChatLeftFunctions }}
+      </div>
+
+      <div class="chat-left-content">
+        {{> ChatList}}
+      </div>
+    </div>
+
+    <div class="chat-right-container">
+      <div class="chat-header chat-right-header">
+        <div class="chat-right-header__col">
+          {{> Avatar 
+            src="/img/avatar.png"
+            alt="Аватар чата"
+          }}
+
+          {{> ChatTitle name="Иван Иванов"}}
+        </div>
+
+        <button class="chat-right-header__settings-btn"></button>
+      </div>
+
+      <div class="messages">
+        {{> Navigation}}
+      </div>
+
+      {{> ChatSendMessageBlock }}
+    </div>
+  </div>
+</main>

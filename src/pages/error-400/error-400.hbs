@@ -1,0 +1,11 @@
+<main>
+  {{> Navigation}}
+
+  {{#> Error 
+      code="404" 
+      text="Вы можете вернуться на страницу с чатами по кнопке ниже" 
+      title="Упсс... Такая страница не найдена"
+  }}
+    {{> Button text="Назад к чатам" className="error__button" page="chat"}}
+  {{/ Error}}
+</main>

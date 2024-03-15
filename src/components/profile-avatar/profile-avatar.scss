@@ -1,0 +1,61 @@
+@import '../../shared/styles/variables.scss';
+
+.profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  margin-bottom: 25px;
+
+  &__container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 100px;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:hover > .profile-avatar__text,
+    &:hover > .profile-avatar__background {
+      display: block;
+    }
+  }
+
+  &__text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    max-width: 70px;
+    text-align: center;
+    color: $chat-message-block-text-color;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__background {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#101010, 0.5);
+  }
+
+  &__user-name {
+    font-size: 16px;
+    font-weight: $font-weight-semibold;
+  }
+}

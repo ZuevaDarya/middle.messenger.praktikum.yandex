@@ -1,0 +1,73 @@
+@import '../../shared/styles/fonts.scss';
+
+$font-body: Inter, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+
+$background-color: white;
+
+$font-weight-light: 300;
+$font-weight-medium: 400;
+$font-weight-regular: 500;
+$font-weight-bold: 600;
+$font-weight-semibold: 700;
+
+$font-large: #{$font-weight-regular} 40px/40px #{$font-body};
+$font-title: #{$font-weight-bold} 20px/20px #{$font-body};
+$font-chat-user-name: #{$font-weight-semibold} 13px/13px #{$font-body};
+$font-regular: #{$font-weight-regular} 13px/13px #{$font-body};
+$font-small: #{$font-weight-medium} 12px/12px #{$font-body};
+$font-micro: #{$font-weight-light} 10px/10px #{$font-body};
+$font-nano: #{$font-weight-regular} 9px/9px #{$font-body};
+
+$font-error-code: #{$font-weight-bold} 128px/128px #{$font-body};
+$font-error-title: #{$font-weight-medium} 24px/24px #{$font-body};
+$font-error-text: #{$font-weight-regular} 20px/20px #{$font-body};
+
+$text-bgcolor: #ffffff;
+$text-color: #000000;
+$text-light-color: #999999;
+
+$title-color: #1e1e1e;
+
+$button-bg-color: #31bdbe;
+$button-hover-bg-color: #298586;
+$button-text-color: #ffffff;
+
+$input-underline-color: #31bdbe;
+$input-focus-outline-color: #298586;
+$input-hover-color: rgba($text-color, 0.1);
+
+$link-color: #298586;
+$link-hover-color: #034748;
+
+$seleted-message-bg-color: #31bdbe;
+$selected-message-text-color: #ffffff;
+$message-num-bg-color: #df6675;
+$message-num-color: #ffffff;
+
+$chat-search-bg-color: #d9d9d9;
+$chat-search-focus-border-color: #999999;
+$chat-right-bg-color: #f1f1f1;
+$chat-right-header-bg-color: #ffffff;
+$chat-border-color: #e1e1e1;
+$chat-message-block-bg-color: rgba(#31bdbe, 0.7);
+$chat-message-block-text-color: #ffffff;
+$chat-list-item-border-color: #f1f1f1;
+$chat-list-item-hover-bg-color: rgba(#31bdbe, 0.1);
+$chat-send-message-border-color: #bec0c8;
+
+$input-shadow-color: rgba(#000000, 0.1);
+
+$settings-button-hover-bg-color: rgba(#31bdbe, 0.2);
+
+$close-profile-block-bg-color: #fbfbfb;
+$close-profile-block-border-color: $chat-right-bg-color;
+$close-profile-btn-bg-color: #df6675;
+$close-profile-btn-hover-color: #c54d5c;
+
+$profile-item-border-color-green: #31bdbe;
+$profile-item-border-color-grey: #eaeaea;
+$profile-settings-text-color-green: #298586;
+$profile-settings-hover-text-color: #298586;
+$profile-settings-text-color-red: #df6675;
+
+$error-text-color: #df6675;

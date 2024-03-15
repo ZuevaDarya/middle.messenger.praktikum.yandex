@@ -1,0 +1,18 @@
+@import './reset.scss';
+@import '../src/shared/styles/variables.scss';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font: $font-regular;
+  background-color: $text-bgcolor;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

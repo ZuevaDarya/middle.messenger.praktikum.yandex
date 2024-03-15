@@ -1,0 +1,19 @@
+<main>
+  {{> Navigation}}
+
+  {{#> PageContainer}}
+    {{> FormTitle text="Вход"}}
+
+    {{#> Form}}
+      {{#> FormContent className="login-form-content"}}
+        {{> InputField type="text" name="login" placeholder="Логин" title="Логин" }}
+        {{> InputField type="password" name="password" placeholder="Пароль" title="Пароль"}}
+      {{/ FormContent}}
+
+      {{#> FormFooter}}
+        {{> Button className="form__button" text="Авторизироваться" page="chat"}}
+        {{> Link url="" text="Нет аккаунта?" page="registration"}}
+      {{/ FormFooter}}
+    {{/ Form}}
+  {{/ PageContainer}}
+</main>

@@ -1,0 +1,11 @@
+@import '../../shared/styles/variables.scss';
+
+.chat-list-item-message {
+  font: $font-regular;
+  color: $text-light-color;
+  line-height: 1.2;
+
+  &_fw-bold {
+    color: $text-color;
+  }
+}

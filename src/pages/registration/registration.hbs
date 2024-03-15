@@ -1,0 +1,24 @@
+<main>
+  {{> Navigation}}
+
+  {{#> PageContainer}}
+    {{> FormTitle text="Регистрация"}}
+
+    {{#> Form}}
+      {{#> FormContent className="registration-form-content"}}
+        {{> InputField type="email" name="email" placeholder="Почта" title="Почта" }}
+        {{> InputField type="text" name="login" placeholder="Логин" title="Логин" }}
+        {{> InputField type="text" name="first_name" placeholder="Имя" title="Имя" }}
+        {{> InputField type="text" name="second_name" placeholder="Фамилия" title="Фамилия" }}
+        {{> InputField type="tel" name="phone" placeholder="Телефон" title="Телефон" }}
+        {{> InputField type="password" name="password" placeholder="Пароль" title="Пароль"}}
+        {{> InputField type="password" name="password" placeholder="Пароль (еще раз)" title="Пароль (еще раз)"}}
+      {{/ FormContent}}
+
+      {{#> FormFooter}}
+        {{> Button className="form__button" text="Зарегистрироваться" page="chat"}}
+        {{> Link url="" text="Войти" page="login"}}
+      {{/ FormFooter}}
+    {{/ Form}}
+  {{/ PageContainer}}
+</main>
