@@ -1,0 +1,13 @@
+import './profile-input.scss';
+
+const profileInputTmpl = `
+  <div 
+    class="{{#if className}} {{className}} {{/if}} profile-item"
+    page="{{page}}"
+  >
+    <span class="profile-item__title">{{title}}</span>
+    <input class="profile-item__input" type="{{type}}" name="{{name}}" placeholder="{{placeholder}}">
+  </div>
+`;
+
+export default profileInputTmpl;
