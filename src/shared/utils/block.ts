@@ -89,15 +89,16 @@ export default class Block {
   }
 
   private render() {
+    const tmpId = getUUID();
     const propsAndStubs = { ...this.props };
 
-    this.createStubsForChildrenElements(propsAndStubs);
+    this.createStubsForChildrenElements(propsAndStubs, tmpId);
 
     const fragment = this.createElement('template');
     fragment.innerHTML = Handlebars.compile(this.redefineRender())(propsAndStubs);
 
     this.replaceStubByElement(fragment);
-    this.replaceListItemsStubsByElements(fragment);
+    this.replaceListItemsStubsByElements(fragment, tmpId);
 
     const newElement = (fragment as unknown as Element).content?.firstElementChild;
 
@@ -131,6 +132,14 @@ export default class Block {
     if (element !== undefined && element !== null) {
       element.style.display = 'none';
     }
+  }
+
+  setProps(nextProps: Props) {
+    if (!nextProps) {
+      return;
+    }
+
+    Object.assign(this.props, nextProps);
   }
 
   private registerEvents(eventBus: EventBus): void {
@@ -175,15 +184,17 @@ export default class Block {
 
     if (attr) {
       Object.entries(attr).forEach(([key, value]) => {
-        this.htmlElement?.setAttribute(key, value as string);
+        if (key === 'class') {
+          this.htmlElement?.classList.add(value as string);
+        } else {
+          this.htmlElement?.setAttribute(key, value as string);
+        }
       });
     }
   }
 
-  private createStubsForChildrenElements(propsAndStubs: Record<string, unknown>) {
-    const tmpId = getUUID();
+  private createStubsForChildrenElements(propsAndStubs: Record<string, unknown>, tmpId: string) {
     const childrenEntries = Object.entries(this.children) as [key: string, child: HTMLElement][];
-
     childrenEntries.forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
     });
@@ -195,22 +206,19 @@ export default class Block {
 
   private replaceStubByElement(fragment: HTMLElement) {
     const childrenValues = Object.values(this.children) as (HTMLElement & Element)[];
-
     childrenValues.forEach(child => {
       const stub = (fragment as unknown as Element).content?.querySelector(`[data-id="${child.id}"]`);
       stub?.replaceWith(child.getElement());
     });
   }
 
-  private replaceListItemsStubsByElements(fragment: HTMLElement) {
-    const tmpId = getUUID();
-
+  private replaceListItemsStubsByElements(fragment: HTMLElement, tmpId: string) {
     (Object.entries(this.lists) as [key: string, child: Element[]][]).forEach(([, child]) => {
       const listCont = this.createElement('template');
 
       (child as HTMLElement & Element[]).forEach(item => {
         if (item instanceof Block) {
-          (listCont as HTMLElement & Element).content?.append(item.getElement());
+          (listCont as HTMLElement & Element).content?.append((item as Element).getElement());
         } else {
           (listCont as HTMLElement & Element).content?.append(`${item}`);
         }
