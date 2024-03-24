@@ -1,12 +1,10 @@
-import Block from '../src/shared/utils/block';
-//import * as Components from '../src/components';
+import { loginPage } from '../src/pages/login';
+import { render } from '../src/shared/utils/render';
+render('#app', loginPage);
 
-type Props = {
-  events?: Record<string, EventListener>;
-  attributes?: Record<string, string>;
-  [key: string | symbol]: unknown;
-}
-//import { pages } from '../src/shared/consts/pages';
+//import * as Components from '../src/components';
+// import Handlebars from 'handlebars';
+// import { pages } from '../src/shared/consts/pages';
 
 // Object.entries(Components).forEach(([name, component]) => {
 //   Handlebars.registerPartial(name, component);
@@ -32,79 +30,8 @@ type Props = {
 //   }
 // });
 
-class Button extends Block {
-  constructor(tagName ='button', props: Props) {
-    super(
-      tagName,
-      {
-        ...props,
-        events: {
-          click: () => console.log('event')
-        }
-      }
-    )
-  }
+// const page = new Page('main', { buttonText: 'button' });
+// const container = document.getElementById('app')!;
 
-  redefineRender() {
-    return '<button>{{text}}</button>';
-  }
-}
-
-class Input extends Block {
-  constructor(tagName='input', props: Props) {
-    super(
-      tagName,
-      {
-        ...props,
-        events: {
-          blur: () => this.validate(),
-        },
-        attr: {
-          class: 'fake'
-        }
-      }
-    )
-  }
-
-  redefineRender() {
-      return '<input />'
-  }
-
-  validate() {
-    console.log('blur');
-  }
-}
-
-class Page extends Block {
-  constructor(tagName = 'div', props: Props) {
-    super(
-      tagName,
-      {
-      ...props, //{buttonText: 'Button'}
-      button: new Button('button', { text: props.buttonText }),
-      input: new Input('input', {
-        label: 'input',
-        // onChange: (value) => {
-        //   this.setProps({buttonText: value})
-        // }
-      }),
-    })
-  }
-
-  // redefineComponentDidUpdate(oldProps: Props, newProps: Props) {
-  //     if (oldProps.buttonText !== newProps.buttonText) {
-  //       this.children.button.setProps({ text: newProps.buttonText });
-  //     }
-  //     return true;
-  //}
-
-  override redefineRender() {
-      return '<div>{{{ button }}} {{{ input }}}</div>'
-  }
-}
-
-const page = new Page('main', {buttonText: 'button'});
-const container = document.getElementById('app')!;
-
-container.append(page.getElement()!)
+// container.append(page.getElement()!)
 
