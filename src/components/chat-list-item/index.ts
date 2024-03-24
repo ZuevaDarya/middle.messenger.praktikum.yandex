@@ -1,2 +1,18 @@
-import './chat-list-item.scss';
-export { default as ChatListItem } from './chat-list-item.hbs?raw';
+import Block from '../../shared/utils/block';
+import chatListItemTmpl from './chat-list-item';
+import { Props } from '../../shared/types';
+
+export default class ChatListItem extends Block {
+  constructor(tagName = 'div', props: Props) {
+    super(
+      tagName,
+      {
+        ...props
+      }
+    )
+  }
+
+  redefineRender() {
+    return chatListItemTmpl;
+  }
+}
