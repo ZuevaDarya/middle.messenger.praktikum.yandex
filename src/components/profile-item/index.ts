@@ -1,17 +1,7 @@
 import Block from '../../shared/utils/block';
 import profileItemTmpl from './profile-item';
-import { Props } from '../../shared/types';
 
-export default class profileItem extends Block {
-  constructor(tagName = 'div', props: Props) {
-    super(
-      tagName,
-      {
-        ...props
-      }
-    )
-  }
-
+export default class ProfileItem extends Block {
   redefineRender() {
     return profileItemTmpl;
   }

@@ -5,17 +5,9 @@ const chatListItemTmpl = `
     <div class="chat-list-item__col">
       {{{ avatar }}}
 
-      {{> Avatar 
-        src="/img/avatar.png"
-        alt="Аватар чата"
-      }}
-
       <div class="chat-list-item__content">
         {{{ chatTitle }}}
         {{{ chatListMessage }}}
-
-        {{> ChatTitle name=name }}
-        {{> ChatListItemMessage senderName=senderName message=message}}
       </div>
     </div>
 

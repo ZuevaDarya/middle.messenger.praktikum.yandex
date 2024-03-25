@@ -6,7 +6,6 @@ const errorTmpl = `
     <p class="error__title">{{title}}</p>
     <p class="error__text">{{text}}</p>
     {{{ button}}}
-    {{> @partial-block}}
   </div>
 `;
 

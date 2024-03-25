@@ -185,7 +185,12 @@ export default class Block {
     if (attr) {
       Object.entries(attr).forEach(([key, value]) => {
         if (key === 'class') {
-          this.htmlElement?.classList.add(value as string);
+          //Если добавляется больше одного класса
+          if (Array.isArray(value)) {
+            (value as string[]).map(item => this.htmlElement?.classList.add(item as string));
+          } else {
+            this.htmlElement?.classList.add(value as string);
+          }
         } else {
           this.htmlElement?.setAttribute(key, value as string);
         }
