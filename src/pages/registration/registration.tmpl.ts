@@ -2,7 +2,6 @@ import './registration.scss';
 
 const registrationTmpl = `
   <div>
-    {{{ navigation }}}
     {{{ pageContainer }}}
   </div>
 `;

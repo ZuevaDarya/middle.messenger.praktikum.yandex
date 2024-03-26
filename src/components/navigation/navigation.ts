@@ -2,7 +2,7 @@ import './navigation.scss';
 
 const navigationTmpl = `
   <nav class="navigation">
-  {{{ lists }}}
+  {{{ list }}}
   </nav>
 `;
 

@@ -29,7 +29,7 @@ const chatTmpl = `
         </div>
 
         <div class="messages">
-          {{{ navigation }}}
+          
         </div>
 
         {{{ chatSendMessageBlock }}}

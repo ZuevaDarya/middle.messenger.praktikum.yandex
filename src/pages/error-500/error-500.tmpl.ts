@@ -1,6 +1,5 @@
 const error500Tmpl = `
   <div>
-    {{{ navigation }}}
     {{{ error }}}
   </div>
 `;

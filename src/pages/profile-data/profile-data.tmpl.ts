@@ -3,8 +3,6 @@ import '../profile/profile.scss';
 
 const profileDataTmpl = `
   <div class="profile-container">
-    {{{ navigation }}}
-
     <div class="profile">
       {{{ profileCloseButton }}}
       {{{ profileAvatar }}}

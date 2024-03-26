@@ -8,22 +8,8 @@ import ChatListItem from '../../components/chat-list-item';
 import ChatListItemMessage from '../../components/chat-list-item-message';
 import ChatSendMessageBlock from '../../components/chat-send-message-block';
 import ChatTitle from '../../components/chat-title';
-import Link from '../../components/link';
-import Navigation from '../../components/navigation';
 
 export const chatPage = new Chat('div', {
-  navigation: new Navigation('nav', {
-    lists: [
-      new Link('a', { url: '', text: 'Логин', page: 'login' }),
-      new Link('a', { url: '', text: 'Регистрация', page: 'registration' }),
-      new Link('a', { url: '', text: 'Чат', page: 'chat' }),
-      new Link('a', { url: '', text: 'Профиль', page: 'profile' }),
-      new Link('a', { url: '', text: 'Изменить данные профиля', page: 'profileData' }),
-      new Link('a', { url: '', text: 'Изменить пароль профиля', page: 'ProfilePassword' }),
-      new Link('a', { url: '', text: 'Ошибка 404', page: 'error400' }),
-      new Link('a', { url: '', text: 'Ошибка 500', page: 'error500' }),
-    ]
-  }),
   avatar: new Avatar('div', {
     src: '/img/avatar.png',
     alt: 'Аватар профиля пользователя'
@@ -38,39 +24,39 @@ export const chatPage = new Chat('div', {
     chatListItems: [
       new ChatListItem('div', {
         time: '12:30',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Иван Иванов' }),
         chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'стикер' }),
       }),
       new ChatListItem('div', {
         time: '17:00',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Макс' }),
         chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'До завтра!' }),
       }),
       new ChatListItem('div', {
         time: '21:05',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Киноклуб' }),
         chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'стикер' }),
       }),
       new ChatListItem('div', {
         time: 'Пн',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Елена Половинкина' }),
         chatListMessage: new ChatListItemMessage('p', { message: 'Можно на сегодня или завтра. Ты как?' }),
         numMessage: '3'
       }),
       new ChatListItem('div', {
         time: 'Пн',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Анна Блая' }),
         chatListMessage: new ChatListItemMessage('p', { message: 'Изображение' }),
         numMessage: '2'
       }),
       new ChatListItem('div', {
         time: '1 Мая 2020',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата'}),
+        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Design Destroyer' }),
         chatListMessage: new ChatListItemMessage('p', {
           message: 'В 2008 году художник Jon Rafman начал собирать...'
@@ -84,7 +70,7 @@ export const chatPage = new Chat('div', {
   }),
   chatTitle: new ChatTitle('p', { name: 'Иван Иванов' }),
   chatSendMessageBlock: new ChatSendMessageBlock('div', {
-    chatButtonAddFile: new ChatButton('button', { attr: { class: 'chat-button__add-file-btn' }}),
-    chatButtonSendMsg: new ChatButton('button', { attr: { class: 'chat-button__send-message-btn' }})
+    chatButtonAddFile: new ChatButton('button', { attr: { class: 'chat-button__add-file-btn' } }),
+    chatButtonSendMsg: new ChatButton('button', { attr: { class: 'chat-button__send-message-btn' } })
   })
 });

@@ -2,8 +2,6 @@ import './profile.scss';
 
 const profileTmpl = `
   <div class="profile-container">
-    {{{ navigation }}}
-
     <div class="profile">
       {{{ profileCloseButton }}}
       {{{ profileAvatar }}}
