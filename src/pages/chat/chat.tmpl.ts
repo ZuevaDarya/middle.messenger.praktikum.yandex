@@ -29,7 +29,10 @@ const chatTmpl = `
         </div>
 
         <div class="messages">
-          
+          <span class="messages__day">{{{day}}}</span>
+          <div>
+            {{{ messages }}}
+          </div>
         </div>
 
         {{{ chatSendMessageBlock }}}

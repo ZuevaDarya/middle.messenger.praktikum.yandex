@@ -8,6 +8,7 @@ import ChatListItem from '../../components/chat-list-item';
 import ChatListItemMessage from '../../components/chat-list-item-message';
 import ChatSendMessageBlock from '../../components/chat-send-message-block';
 import ChatTitle from '../../components/chat-title';
+import Message from '../../components/message';
 
 export const chatPage = new Chat('div', {
   avatar: new Avatar('div', {
@@ -26,7 +27,7 @@ export const chatPage = new Chat('div', {
         time: '12:30',
         avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
         chatTitle: new ChatTitle('p', { name: 'Иван Иванов' }),
-        chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'стикер' }),
+        chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'Круто!' }),
       }),
       new ChatListItem('div', {
         time: '17:00',
@@ -69,6 +70,31 @@ export const chatPage = new Chat('div', {
     alt: 'Аватар чата'
   }),
   chatTitle: new ChatTitle('p', { name: 'Иван Иванов' }),
+  day: '19 июня',
+  messages: [
+    new Message('div', {
+      atrr: { class: 'message_left' },
+      text: `Привет! Смотри, тут всплыл интересный кусок лунной космической истории — 
+            НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для 
+            полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — 
+            и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, 
+            так как астронавты с собой забрали только кассеты с пленкой.
+            Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету 
+            они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно 
+            продали на аукционе за 45000 евро.`,
+      time: '11:56'
+    }),
+    new Message('div', {
+      attr: { class: 'message_left' },
+      src: '/img/message-img.png',
+      time: '11:56'
+    }),
+    new Message('div', {
+      attr: { class: 'message_right' },
+      text: 'Круто!',
+      time: '12:00'
+    }),
+  ],
   chatSendMessageBlock: new ChatSendMessageBlock('div', {
     chatButtonAddFile: new ChatButton('button', { attr: { class: 'chat-button__add-file-btn' } }),
     chatButtonSendMsg: new ChatButton('button', { attr: { class: 'chat-button__send-message-btn' } })
