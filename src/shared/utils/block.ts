@@ -18,7 +18,10 @@ type Element = {
   id?: string;
   content?: HTMLElement;
 }
-
+type PropEvent = {
+  querySelector: string;
+  event: EventListener;
+}
 export default class Block {
   private static readonly EVENTS = {
     INIT: 'init',
@@ -162,10 +165,16 @@ export default class Block {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach(eventName => {
-      this.htmlElement?.addEventListener(
-        eventName,
-        (events as Record<string, EventListener>)[eventName]
-      );
+      if (typeof events[eventName] === 'object') {
+        this.htmlElement
+          ?.querySelector((events[eventName] as unknown as PropEvent).querySelector)
+          ?.addEventListener(eventName, (events[eventName] as unknown as PropEvent).event);
+      } else {
+        this.htmlElement?.addEventListener(
+          eventName,
+          (events as Record<string, EventListener>)[eventName]
+        );
+      }
     });
   }
 
@@ -174,7 +183,13 @@ export default class Block {
 
     if (events) {
       Object.keys(events).forEach(eventName => {
-        this.htmlElement?.removeEventListener(eventName, events[eventName]);
+        if (typeof events[eventName] === 'object') {
+          this.htmlElement
+            ?.querySelector((events[eventName] as unknown as PropEvent).querySelector)
+            ?.removeEventListener(eventName, (events[eventName] as unknown as PropEvent).event);
+        } else {
+          this.htmlElement?.removeEventListener(eventName, events[eventName]);
+        }
       });
     }
   }
