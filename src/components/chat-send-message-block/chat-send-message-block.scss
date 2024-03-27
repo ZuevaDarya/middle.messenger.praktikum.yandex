@@ -10,27 +10,5 @@
   gap: 15px;
 
   padding: 15px 25px;
-
   border-top: 2px solid $chat-border-color;
-
-  &__input {
-    width: 100%;
-    max-width: 700px;
-
-    padding: 12px 25px;
-
-    border: none;
-    border-radius: 30px;
-    filter: drop-shadow(0 0 5px $input-shadow-color);
-
-    font: $font-regular;
-
-    &::placeholder {
-      color: $text-light-color;
-    }
-
-    &:focus {
-      outline: 2px solid $chat-border-color;
-    }
-  }
 }
