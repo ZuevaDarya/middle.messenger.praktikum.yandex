@@ -33,3 +33,10 @@
 ### Ссылки на PR
 
 Спринт 1: [PR](https://github.com/ZuevaDarya/middle.messenger.praktikum.yandex/pull/7)
+
+Спринт 2: [PR](https://github.com/ZuevaDarya/middle.messenger.praktikum.yandex/pull/8) 
+ * код разбит на компоненты и страницы, наследующие Block
+ * реализован механизм EventBus
+ * реализован HTTPTransport для работы с запросами
+ * добавлена валидация на все формы
+ * реализован сбор данных из форм в консоль

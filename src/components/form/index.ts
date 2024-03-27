@@ -1,2 +1,10 @@
-import './form.scss';
-export { default as Form } from './form.hbs?raw';
+import Block from '../../shared/utils/block';
+import formTmpl from './form';
+
+export default class Form extends Block {
+  redefineRender() {
+    return formTmpl;
+  }
+}
+
+

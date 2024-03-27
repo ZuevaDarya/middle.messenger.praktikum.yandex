@@ -12,7 +12,32 @@ body {
   font: $font-regular;
   background-color: $text-bgcolor;
   color: $text-color;
+}
+
+main {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.validation-error {
+  font: $font-micro;
+  line-height: 14px;
+  color: $input-error-validate-color;
+  margin-top: -15px;
+  margin-left: 5px;
+
+  &_margin {
+    margin-top: -10px;
+  }
+}
+
+.submit-error {
+  font: $font-small;
+  line-height: 14px;
+  color: $input-error-validate-color;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: $font-weight-bold;
 }

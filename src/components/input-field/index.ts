@@ -1,2 +1,8 @@
-import './input-field.scss';
-export { default as InputField } from './input-field.hbs?raw';
+import Block from '../../shared/utils/block';
+import inputFieldTmpl from './input-field';
+
+export default class InputField extends Block {
+  redefineRender() {
+    return inputFieldTmpl;
+  }
+}
