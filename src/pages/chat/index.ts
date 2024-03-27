@@ -9,6 +9,12 @@ import ChatListItemMessage from '../../components/chat-list-item-message';
 import ChatSendMessageBlock from '../../components/chat-send-message-block';
 import ChatTitle from '../../components/chat-title';
 import Message from '../../components/message';
+import { profilePage } from '../profile';
+import { removeChildrenInRoot } from '../../shared/utils/remove-children-in-root';
+import { render } from '../../shared/utils/render';
+import SearchInput from '../../components/search-input';
+import { validateFormData } from '../../shared/utils/validate-form-data';
+import { validateSubmit } from '../../shared/utils/validate-submit';
 
 export const chatPage = new Chat('div', {
   avatar: new Avatar('div', {
@@ -18,7 +24,13 @@ export const chatPage = new Chat('div', {
   chatHeaderLink: new ChatHeaderLink('a', {
     text: 'Профиль',
     page: 'profile',
-    src: ''
+    src: '#',
+    events: {
+      click: () => {
+        removeChildrenInRoot('#app');
+        render('#app', profilePage);
+      }
+    }
   }),
   chatLeftFunctions: new ChatLeftFunctions(),
   chatList: new ChatList('div', {
@@ -95,8 +107,21 @@ export const chatPage = new Chat('div', {
       time: '12:00'
     }),
   ],
-  chatSendMessageBlock: new ChatSendMessageBlock('div', {
+  chatSendMessageBlock: new ChatSendMessageBlock('form', {
+    events: {
+      submit: (e: Event) => validateSubmit(e)
+    },
     chatButtonAddFile: new ChatButton('button', { attr: { class: 'chat-button__add-file-btn' } }),
-    chatButtonSendMsg: new ChatButton('button', { attr: { class: 'chat-button__send-message-btn' } })
+    chatButtonSendMsg: new ChatButton('button', {
+      attr: { class: 'chat-button__send-message-btn' },
+    }),
+    searchInput: new SearchInput('input', {
+      type: 'text',
+      name: 'message',
+      placeholder: 'Сообщение',
+      events: {
+        blur: (e: Event) => validateFormData(e)
+      }
+    })
   })
 });

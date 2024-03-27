@@ -35,6 +35,9 @@ $button-text-color: #ffffff;
 $input-underline-color: #31bdbe;
 $input-focus-outline-color: #298586;
 $input-hover-color: rgba($text-color, 0.1);
+$input-shadow-color: rgba(#000000, 0.1);
+$input-error-validate-color: #df6675;
+$input-error-focus-outline-color: #AC3342;
 
 $link-color: #298586;
 $link-hover-color: #034748;
@@ -43,6 +46,12 @@ $seleted-message-bg-color: #31bdbe;
 $selected-message-text-color: #ffffff;
 $message-num-bg-color: #df6675;
 $message-num-color: #ffffff;
+$message-bg-color: #ffffff;
+$message-right-bg-color: #31BDBE;
+$message-right-text-color: #ffffff;
+$message-right-time-color: #034748;
+$message-left-time-color: #999999;
+$messages-day-color: #999999;
 
 $chat-search-bg-color: #d9d9d9;
 $chat-search-focus-border-color: #999999;
@@ -54,8 +63,6 @@ $chat-message-block-text-color: #ffffff;
 $chat-list-item-border-color: #f1f1f1;
 $chat-list-item-hover-bg-color: rgba(#31bdbe, 0.1);
 $chat-send-message-border-color: #bec0c8;
-
-$input-shadow-color: rgba(#000000, 0.1);
 
 $settings-button-hover-bg-color: rgba(#31bdbe, 0.2);
 
@@ -71,10 +78,3 @@ $profile-settings-hover-text-color: #298586;
 $profile-settings-text-color-red: #df6675;
 
 $error-text-color: #df6675;
-$message-bg-color: #ffffff;
-$message-right-bg-color: #31BDBE;
-$message-right-text-color: #ffffff;
-$message-right-time-color: #034748;
-$message-left-time-color: #999999;
-
-$messages-day-color: #999999;

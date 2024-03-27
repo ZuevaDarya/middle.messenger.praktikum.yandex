@@ -1,10 +1,24 @@
+import { chatPage } from '../chat';
+import { loginPage } from '../login';
 import Profile from './profile';
 import ProfileAvatar from '../../components/profile-avatar';
 import ProfileCloseButton from '../../components/profile-close-button';
+import { profileDataPage } from '../profile-data';
 import ProfileItem from '../../components/profile-item';
+import { profilePasswordPage } from '../profile-password';
+import { removeChildrenInRoot } from '../../shared/utils/remove-children-in-root';
+import { render } from '../../shared/utils/render';
 
 export const profilePage = new Profile('div', {
-  profileCloseButton: new ProfileCloseButton('div', { page: 'chat' }),
+  profileCloseButton: new ProfileCloseButton('div', {
+    page: 'chat',
+    events: {
+      click: () => {
+        removeChildrenInRoot('#app');
+        render('#app', chatPage);
+      }
+    }
+  }),
   profileAvatar: new ProfileAvatar('div', { src: '/img/profile-avatar.png', name: 'Иван' }),
   profileContentList: [
     new ProfileItem('div', {
@@ -42,17 +56,35 @@ export const profilePage = new Profile('div', {
     new ProfileItem('div', {
       attr: { class: ['profile-item_border-grey', 'profile-item_text-green'] },
       title: 'Изменить данные',
-      page: 'profileData'
+      page: 'profileData',
+      events: {
+        click: () => {
+          removeChildrenInRoot('#app');
+          render('#app', profileDataPage);
+        }
+      }
     }),
     new ProfileItem('div', {
       attr: { class: ['profile-item_border-grey', 'profile-item_text-green'] },
       title: 'Изменить пароль',
-      page: 'profilePassword'
+      page: 'profilePassword',
+      events: {
+        click: () => {
+          removeChildrenInRoot('#app');
+          render('#app', profilePasswordPage);
+        }
+      }
     }),
     new ProfileItem('div', {
       attr: { class: ['profile-item_border-grey', 'profile-item_text-red'] },
       title: 'Выйти',
-      page: 'login'
+      page: 'login',
+      events: {
+        click: () => {
+          removeChildrenInRoot('#app');
+          render('#app', loginPage);
+        }
+      }
     }),
   ]
 });

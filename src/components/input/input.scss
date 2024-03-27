@@ -23,4 +23,12 @@
   &:hover {
     background-color: $input-hover-color;
   }
+
+  &_validation-error {
+    border-bottom: 1px solid $input-error-validate-color;
+
+    &:focus {
+      outline-color: $input-error-focus-outline-color;
+    }
+  }
 }
