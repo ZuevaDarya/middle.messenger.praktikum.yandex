@@ -1,2 +1,9 @@
-import './link.scss';
-export { default as Link } from './link.hbs?raw';
+import Block from '../../shared/utils/block';
+import linkTmpl from './link';
+
+export default class Link extends Block {
+  redefineRender() {
+    return linkTmpl;
+  }
+}
+

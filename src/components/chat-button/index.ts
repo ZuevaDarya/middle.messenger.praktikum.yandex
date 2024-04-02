@@ -1,2 +1,8 @@
-import './chat-button.scss';
-export { default as ChatButton } from './chat-button.hbs?raw';
+import Block from '../../shared/utils/block';
+import chatButtonTmpl from './chat-button';
+
+export default class ChatButton extends Block {
+  redefineRender() {
+    return chatButtonTmpl;
+  }
+}

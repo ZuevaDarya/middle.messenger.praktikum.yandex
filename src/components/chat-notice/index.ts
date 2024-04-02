@@ -1,2 +1,9 @@
-import './chat-notice.scss';
-export { default as ChatNotice } from './chat-notice.hbs?raw';
+import Block from '../../shared/utils/block';
+import chatNoticeTmpl from './chat-notice';
+
+export default class ChatNotice extends Block {
+  redefineRender() {
+    return chatNoticeTmpl;
+  }
+}
+

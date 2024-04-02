@@ -1,2 +1,10 @@
-import './error.scss';
-export { default as Error } from './error.hbs?raw';
+import Block from '../../shared/utils/block';
+import errorTmpl from './error';
+
+export default class Error extends Block {
+    redefineRender() {
+    return errorTmpl;
+  }
+}
+
+

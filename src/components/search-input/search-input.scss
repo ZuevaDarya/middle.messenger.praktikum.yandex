@@ -1,0 +1,26 @@
+@import '../../shared/styles/variables.scss';
+
+.search-input {
+  width: 100%;
+  max-width: 700px;
+
+  padding: 12px 25px;
+
+  border: none;
+  border-radius: 30px;
+  filter: drop-shadow(0 0 5px $input-shadow-color);
+
+  font: $font-regular;
+
+  &::placeholder {
+    color: $text-light-color;
+  }
+
+  &:focus {
+    outline: 2px solid $chat-border-color;
+  }
+
+  &_error {
+    filter: drop-shadow(0 0 2px $input-error-focus-outline-color);
+  }
+}

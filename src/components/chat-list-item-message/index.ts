@@ -1,2 +1,9 @@
-import './chat-list-item-message.scss';
-export { default as ChatListItemMessage } from './chat-list-item-message.hbs?raw';
+import Block from '../../shared/utils/block';
+import chatListItemMessageTmpl from './chat-list-item-message';
+
+export default class ChatListItemMessage extends Block {
+  redefineRender() {
+    return chatListItemMessageTmpl;
+  }
+}
+

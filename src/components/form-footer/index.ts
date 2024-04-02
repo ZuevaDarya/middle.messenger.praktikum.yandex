@@ -1,2 +1,10 @@
-import './form-footer.scss';
-export { default as FormFooter } from './form-footer.hbs?raw';
+import Block from '../../shared/utils/block';
+import formFooterTmpl from './form-footer';
+
+export default class FormFooter extends Block {
+  redefineRender() {
+    return formFooterTmpl;
+  }
+}
+
+

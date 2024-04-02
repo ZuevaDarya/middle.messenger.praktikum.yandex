@@ -1,2 +1,9 @@
-import './chat-title.scss';
-export { default as ChatTitle } from './chat-title.hbs?raw';
+import Block from '../../shared/utils/block';
+import chatTitleTmpl from './chat-title';
+
+export default class ChatTitle extends Block {
+  redefineRender() {
+    return chatTitleTmpl;
+  }
+}
+

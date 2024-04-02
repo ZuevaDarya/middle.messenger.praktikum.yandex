@@ -3,7 +3,7 @@
 .chat-page-main {
   width: 100%;
   height: 100%;
-  max-width: 1280px;
+  width: 1280px;
 }
 
 .chat-container {
@@ -104,4 +104,18 @@
 
 .messages {
   position: relative;
+  padding-top: 19px;
+  padding-right: 25px;
+  padding-left: 25px;
+  margin-bottom: 5px;
+
+  overflow-y: auto;
+
+  &__day {
+    display: block;
+    
+    margin-bottom: 30px;
+    text-align: center;
+    color: $messages-day-color;
+  }
 }

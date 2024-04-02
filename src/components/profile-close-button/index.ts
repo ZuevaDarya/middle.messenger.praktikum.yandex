@@ -1,2 +1,9 @@
-import './profile-close-button.scss'
-export { default as ProfileCloseButton } from './profile-close-button.hbs?raw';
+import Block from '../../shared/utils/block';
+import profileCloseButtonTmpl from './profile-close-button';
+
+export default class ProfileCloseButton extends Block {
+  redefineRender() {
+    return profileCloseButtonTmpl;
+  }
+}
+
