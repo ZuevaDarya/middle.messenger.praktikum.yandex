@@ -30,7 +30,7 @@
     flex-direction: column;
     gap: 5px;
 
-    max-width: 200px;
+    min-width: 150px;
   }
 
   &__right {
@@ -42,6 +42,8 @@
 
   &__time {
     color: $text-light-color;
+    text-align: right;
+    //6max-width: 30px;
   }
 
   &__num-message {

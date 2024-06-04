@@ -9,21 +9,19 @@
   max-width: 400px;
   min-width: 125px;
 
-  margin-bottom: 15px;
-  padding: 10px 15px 10px 25px;
+  margin-bottom: 10px;
+  padding: 10px 15px 10px 15px;
 
   font: $font-small;
   line-height: 15px;
   text-align: left;
 
   background-color: $message-bg-color;
-  border-radius: 0 25px 25px 25px;
+  border-radius: 0 15px 15px 15px;
 
   &_right {
     float: right;
-    border-radius: 25px 25px 0 25px;
-
-    padding: 10px 25px 10px 15px;
+    border-radius: 15px 15px 0 15px;
 
     background-color: $message-right-bg-color;
     color: $message-right-text-color;
@@ -33,8 +31,17 @@
     align-self: flex-end;
     color: $message-left-time-color;
   }
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+  }
 }
 
 .message_right > span.message__time {
   color: $message-right-time-color;
 }
+

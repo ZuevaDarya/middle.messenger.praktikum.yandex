@@ -13,7 +13,7 @@ const chatTmpl = `
           {{{ chatLeftFunctions }}}
         </div>
 
-        <div class="chat-left-content">
+        <div class="chat-left-content custom-scroll">
           {{{ chatList }}}
         </div>
       </div>
@@ -28,7 +28,7 @@ const chatTmpl = `
           <button class="chat-right-header__settings-btn"></button>
         </div>
 
-        <div class="messages">
+        <div class="messages custom-scroll">
           <span class="messages__day">{{{day}}}</span>
           <div>
             {{{ messages }}}
