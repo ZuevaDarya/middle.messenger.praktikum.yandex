@@ -9,23 +9,24 @@ type Options = {
 }
 
 type InitOptions = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: InitOptions) => Promise<XMLHttpRequest>;
 
 export default class HTTPTransport {
-  get(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Get }, options.timeout);
-  }
+  get: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Get }, options.timeout)
+  );
 
-  post(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Post }, options.timeout);
-  }
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Post }, options.timeout)
+  );
 
-  put(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Put }, options.timeout);
-  }
+  put: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Put }, options.timeout)
+  );
 
-  delete(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Delete }, options.timeout);
-  }
+  delete: HTTPMethod = (url: string, options = {}) => (
+    this.request(url, { ...options, method: Method.Delete }, options.timeout)
+  )
 
   request(url: string, options: Options = {method: Method.Get}, timeout = 5000): Promise<XMLHttpRequest> {
     const { data, method, headers } = options;
