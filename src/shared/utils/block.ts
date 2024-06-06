@@ -18,6 +18,7 @@ type Element = {
   id?: string;
   content?: HTMLElement;
 }
+
 type PropEvent = {
   querySelector: string;
   event: EventListener;
