@@ -1,16 +1,11 @@
 import EventBus from './event-bus';
 import { v4 as getUUID } from 'uuid';
 import Handlebars from 'handlebars';
-
-type Props = {
-  events?: Record<string, EventListener>;
-  attributes?: Record<string, string>;
-  [key: string | symbol]: unknown;
-}
+import { IBlockProps } from '../types';
 
 type Meta = {
   tagName: string;
-  props?: Props;
+  props?: IBlockProps;
 }
 
 type Element = {
@@ -32,12 +27,12 @@ export default class Block {
   };
 
   private readonly meta: Meta;
-  private readonly props: Props = {};
+  private readonly props: IBlockProps;
   private readonly eventBus: () => EventBus;
 
-  private lists: Props = {};
-  private children: Props = {};
-  private htmlElement: HTMLElement | null = null;
+  private lists: IBlockProps = {};
+  private children: IBlockProps;
+  private htmlElement?: HTMLElement;
 
   protected id = getUUID();
 
@@ -53,7 +48,7 @@ export default class Block {
       tagName,
       props
     };
-    this.props = this.makePropsProxy({ ...props });
+    this.props = this.makePropsProxy(props);
     this.children = this.makePropsProxy(children);
     this.lists = this.makePropsProxy(lists);
 
@@ -80,7 +75,6 @@ export default class Block {
 
   private componentDidUpdate() {
     const response = this.redefineComponentDidUpdate();
-
     if (!response) {
       return;
     }
@@ -93,30 +87,36 @@ export default class Block {
   }
 
   private render() {
+    const fragmentContent = this.compile();
+    this.removeEvents();
+
+    const newElement = fragmentContent.firstElementChild!;
+
+    this.htmlElement!.replaceWith(newElement)
+    this.htmlElement = newElement as HTMLElement;
+
+    this.addEvents();
+    this.addAttributes();
+  }
+
+  private compile(): DocumentFragment {
     const tmpId = getUUID();
     const propsAndStubs = { ...this.props };
 
     this.createStubsForChildrenElements(propsAndStubs, tmpId);
 
-    const fragment = this.createElement('template');
+    const fragment = document.createElement('template');
     fragment.innerHTML = Handlebars.compile(this.redefineRender())(propsAndStubs);
 
     this.replaceStubByElement(fragment);
     this.replaceListItemsStubsByElements(fragment, tmpId);
 
-    const newElement = (fragment as unknown as Element).content?.firstElementChild;
-
-    if (this.htmlElement && newElement) {
-      this.removeEvents();
-      this.htmlElement.replaceWith(newElement);
-    }
-
-    this.htmlElement = newElement as HTMLElement;
-    this.addEvents();
-    this.addAttributes();
+    return fragment.content;
   }
 
-  redefineRender() { }
+  redefineRender(): string {
+    return '';
+  }
 
   getElement() {
     return this.element;
@@ -138,7 +138,7 @@ export default class Block {
     }
   }
 
-  setProps(nextProps: Props) {
+  setProps(nextProps: IBlockProps) {
     if (!nextProps) {
       return;
     }
@@ -253,10 +253,10 @@ export default class Block {
     });
   }
 
-  private getPropsChildren(propsWithChildren: Props) {
-    const children: Props = {};
-    const props: Props = {};
-    const lists: Props = {};
+  private getPropsChildren(propsWithChildren: IBlockProps) {
+    const children: IBlockProps = {};
+    const props: IBlockProps = {};
+    const lists: IBlockProps = {};
 
     Object.entries(propsWithChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -271,7 +271,7 @@ export default class Block {
     return { children, props, lists };
   }
 
-  private makePropsProxy(props: Props) {
+  private makePropsProxy(props: IBlockProps) {
     const eventBus = this.eventBus;
 
     return new Proxy(props, {
