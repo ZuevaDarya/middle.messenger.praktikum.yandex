@@ -1,7 +1,11 @@
-import { loginPage } from '../src/pages/login';
-import Navigation from '../src/components/navigation';
-import { NAVIGATION } from '../src/shared/consts/navigation';
-import { render } from '../src/shared/utils/render';
+import Login from '../src/pages/login/login';
+import Registration from '../src/pages/registration/registration';
+import Router from '../src/shared/router/router';
+import { Routes } from '../src/shared/consts/routes';
 
-render('#app', loginPage);
-render('#app', new Navigation('nav', {list: NAVIGATION }));
+Router
+  .use(Routes.Login, Login)
+  .use(Routes.Registration, Registration)
+  .start();
+
+document.addEventListener('DOMContentLoaded', () => Router.go(Routes.Login));

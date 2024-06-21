@@ -1,14 +1,15 @@
 import Block from '../utils/block';
 import Route from './route';
-//import { Routes } from '../consts/routes';
 
 const APP_QUERY = '#app';
 
 class Router {
   private static __instance: Router;
+
   private _currentRoute: Route | null = null;
   private routes: Route[] = [];
   private history = window.history;
+
   private readonly rootQuery: string = '';
 
   constructor(rootQuery: string) {
@@ -18,6 +19,10 @@ class Router {
 
     this.rootQuery = rootQuery;
     Router.__instance = this;
+  }
+
+  get currentRoute() {
+    return window.location.pathname;
   }
 
   use(pathname: string, block: typeof Block): Router {

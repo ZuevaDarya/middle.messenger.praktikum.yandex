@@ -1,4 +1,7 @@
 import Block from '../utils/block';
+import isEqual from '../utils/is-equal';
+import { PlainObject } from '../types';
+import { render } from '../utils/render';
 
 type Props = { rootQuery: string };
 
@@ -8,9 +11,9 @@ class Route {
   private block: Block | null;
   private readonly props!: Props;
 
-  constructor(pathname: string, view: typeof Block, props: Props) {
+  constructor(pathname: string, componentClass: typeof Block, props: Props) {
     this.pathname = pathname;
-    this.blockClass = view;
+    this.blockClass = componentClass;
     this.block = null;
     this.props = props;
   }
@@ -22,41 +25,30 @@ class Route {
     }
   }
 
+  getPath(): string {
+    return <string>this.pathname;
+  }
+
   leave() {
     if (this.block) {
       this.block.hide();
+      this.block = null;
     }
   }
 
   match(pathname: string): boolean {
-    return isEqual(pathname, <string>this.pathname);
+    return isEqual(pathname as unknown as PlainObject, this.pathname as unknown as PlainObject);
   }
 
   render() {
     if (!this.block) {
-      console.log(this.block, typeof this.blockClass)
-
       this.block = new this.blockClass();
-      getRoot(this.props.rootQuery, this.block);
+      render(this.props.rootQuery, this.block);
       return;
     }
 
     this.block.show();
   }
-}
-
-function isEqual(lhs: string, rhs: string): boolean {
-  return lhs === rhs;
-}
-
-function getRoot(query: string, block: Block) {
-  const root = document.querySelector(query);
-
-  if (root) {
-    root.textContent = block.getElement() as unknown as string;
-  }
-
-  return root;
 }
 
 export default Route;
