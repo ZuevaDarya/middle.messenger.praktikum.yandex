@@ -1,5 +1,5 @@
 import { Method } from '../consts/query-methods';
-import { queryStringify } from '../utils/query-stringify';
+import queryStringify from '../utils/query-stringify';
 
 type Options = {
   method: Method;
@@ -55,6 +55,7 @@ export default class HTTPTransport {
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
 
       if (method === Method.Get || method === Method.Delete || !data) {
         xhr.send();
