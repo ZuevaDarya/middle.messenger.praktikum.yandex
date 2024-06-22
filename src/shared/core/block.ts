@@ -35,6 +35,7 @@ export default class Block {
   private htmlElement?: HTMLElement;
 
   protected id = getUUID();
+  protected state: object = {};
 
   get element() {
     return this.htmlElement;
@@ -43,6 +44,8 @@ export default class Block {
   constructor(tagName = 'div', propsWithChildren = {}) {
     const eventBus = new EventBus();
     const { props, children, lists } = this.getPropsChildren(propsWithChildren);
+
+    this.getStateFromProps(props);
 
     this.meta = {
       tagName,
@@ -106,7 +109,7 @@ export default class Block {
     this.createStubsForChildrenElements(propsAndStubs, tmpId);
 
     const fragment = document.createElement('template');
-    fragment.innerHTML = Handlebars.compile(this.redefineRender())(propsAndStubs);
+    fragment.innerHTML = Handlebars.compile(this.redefineRender())({ ...propsAndStubs, ...this.state});
 
     this.replaceStubByElement(fragment);
     this.replaceListItemsStubsByElements(fragment, tmpId);
@@ -120,6 +123,18 @@ export default class Block {
 
   getElement() {
     return this.element;
+  }
+
+  setState(nextState: object) {
+    if (!nextState) {
+      return;
+    }
+
+    Object.assign(this.state, nextState);
+  }
+
+  protected getStateFromProps(props: object) {
+    this.state = { ...props }
   }
 
   show() {

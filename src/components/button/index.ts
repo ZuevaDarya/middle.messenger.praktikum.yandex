@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import buttonTmpl from './button';
 import { IButton } from '../../shared/types';
 

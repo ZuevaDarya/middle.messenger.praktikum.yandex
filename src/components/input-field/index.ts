@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import Input from '../input';
 import inputFieldTmpl from './input-field';
 

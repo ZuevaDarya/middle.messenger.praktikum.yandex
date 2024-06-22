@@ -1,9 +1,9 @@
 import { checkDataValid } from './check-data-valid';
-import { FORM_INPUT_NAMES } from '../consts/form-input-names';
+import { FORM_INPUT_NAMES } from '../../consts/form-input-names';
 import { getFormData } from './get-form-data';
-import { VALIDATE_ERRORS } from '../consts/validate-errors';
+import { VALIDATE_ERRORS } from '../../consts/validate-errors';
 
-export function validateSubmit(e: Event): void {
+export function validateSubmit(e: Event): boolean {
   e.preventDefault();
 
   const form = e.target as HTMLFormElement;
@@ -37,11 +37,15 @@ export function validateSubmit(e: Event): void {
 
       searchInput?.classList.add('search-input_error');
     }
+
+    return false;
   } else {
     if (errorText) {
       btnParent?.removeChild(errorText);
     }
     searchInput?.classList.remove('search-input_error');
     console.log(getFormData(form));
+
+    return true;
   }
 }

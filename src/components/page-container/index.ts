@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import Form from '../form';
 import FormTitle from '../form-title';
 import { IPageContainer } from '../../shared/types';
@@ -9,7 +9,7 @@ export default class PageContainer extends Block {
     super('div', {
       pageContent: [
         new FormTitle({ text: props.text }),
-        new Form({...props})
+        new Form({ ...props })
       ]
     });
   }

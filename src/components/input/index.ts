@@ -1,6 +1,6 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import inputTmpl from './input';
-import { validateFormData } from '../../shared/utils/validate-form-data';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
 
 interface IInput {
   name: string;

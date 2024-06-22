@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import chatSendMessageBlockTmpl from './chat-send-mesage-block';
 
 export default class ChatSendMessageBlock extends Block {

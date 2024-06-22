@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import Button from '../button';
 import formFooterTmpl from './form-footer';
 import { IFormFooter } from '../../shared/types';

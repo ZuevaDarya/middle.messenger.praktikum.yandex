@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import profileItemTmpl from './profile-item';
 
 export default class ProfileItem extends Block {

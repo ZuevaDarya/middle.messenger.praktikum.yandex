@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import chatTitleTmpl from './chat-title';
 
 export default class ChatTitle extends Block {

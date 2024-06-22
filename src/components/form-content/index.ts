@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import formContentTmpl from './form-content';
 
 interface IFormContent {
@@ -9,7 +9,7 @@ interface IFormContent {
 export default class FormContent extends Block {
   constructor(props: IFormContent) {
     super('div', {
-      attr: { class: props?.formContentClass},
+      attr: { class: props?.formContentClass },
       lists: props.list
     });
   }

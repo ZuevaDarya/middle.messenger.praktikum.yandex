@@ -1,7 +1,7 @@
 import { checkDataValid } from './check-data-valid';
 import comparePasswords from './compare-passwords';
-import { FORM_INPUT_NAMES } from '../consts/form-input-names';
-import { VALIDATE_ERRORS } from '../consts/validate-errors';
+import { FORM_INPUT_NAMES } from '../../consts/form-input-names';
+import { VALIDATE_ERRORS } from '../../consts/validate-errors';
 
 export function validateFormData(e: Event): void {
   e.preventDefault();

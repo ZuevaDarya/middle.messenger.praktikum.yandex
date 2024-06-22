@@ -7,7 +7,7 @@ import {
   checkPassword,
   checkPhone
 } from './check-functions';
-import { FORM_INPUT_NAMES } from '../consts/form-input-names';
+import { FORM_INPUT_NAMES } from '../../consts/form-input-names';
 
 export function checkDataValid(name: string, data: string) {
   const isPassword =

@@ -1,4 +1,4 @@
-import { FORM_INPUT_NAMES } from '../consts/form-input-names';
+import { FORM_INPUT_NAMES } from '../../consts/form-input-names';
 
 function comparePasswords(): boolean {
   const inputPassword = document.querySelector(`[name=${FORM_INPUT_NAMES.password}]`);

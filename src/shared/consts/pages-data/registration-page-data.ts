@@ -1,4 +1,4 @@
-import { Routes } from './routes';
+import { Routes } from '../routes';
 
 export const REGISTRATION_PAGE_DATA = [
   {

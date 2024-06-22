@@ -1,4 +1,4 @@
-import Block from '../utils/block';
+import Block from '../core/block';
 import Route from './route';
 
 const APP_QUERY = '#app';

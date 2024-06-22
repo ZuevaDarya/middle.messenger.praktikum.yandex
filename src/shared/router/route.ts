@@ -1,4 +1,4 @@
-import Block from '../utils/block';
+import Block from '../core/block';
 import isEqual from '../utils/is-equal';
 import { PlainObject } from '../types';
 import { render } from '../utils/render';

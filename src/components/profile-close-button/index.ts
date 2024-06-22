@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import profileCloseButtonTmpl from './profile-close-button';
 
 export default class ProfileCloseButton extends Block {

@@ -1,5 +1,5 @@
 
-import { VALIDATE_ERRORS } from '../consts/validate-errors';
+import { VALIDATE_ERRORS } from '../../consts/validate-errors';
 
 type ReturnData = {
   isValid: boolean,

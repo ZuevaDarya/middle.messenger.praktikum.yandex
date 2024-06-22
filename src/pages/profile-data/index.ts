@@ -7,8 +7,8 @@ import ProfileInput from '../../components/profile-input';
 import { profilePage } from '../profile';
 import { removeChildrenInRoot } from '../../shared/utils/remove-children-in-root';
 import { render } from '../../shared/utils/render';
-import { validateFormData } from '../../shared/utils/validate-form-data';
-import { validateSubmit } from '../../shared/utils/validate-submit';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
+import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export const profileDataPage = new ProfileData('div', {
   events: {

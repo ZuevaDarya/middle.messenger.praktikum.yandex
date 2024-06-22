@@ -7,8 +7,8 @@ import { profilePage } from '../profile';
 import ProfilePassword from './profile-password';
 import { removeChildrenInRoot } from '../../shared/utils/remove-children-in-root';
 import { render } from '../../shared/utils/render';
-import { validateFormData } from '../../shared/utils/validate-form-data';
-import { validateSubmit } from '../../shared/utils/validate-submit';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
+import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export const profilePasswordPage = new ProfilePassword('div', {
   events: {

@@ -1,13 +1,10 @@
 import avatarTmpl from './avatar';
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
+import { IAvatar } from '../../shared/types';
 
-interface IAvatarProps {
-  src?: string;
-  alt?: string;
-}
 class Avatar extends Block {
-  constructor(props: IAvatarProps) {
-    super('div', {...props});
+  constructor(props: IAvatar) {
+    super('div', { ...props });
   }
 
   redefineRender() {

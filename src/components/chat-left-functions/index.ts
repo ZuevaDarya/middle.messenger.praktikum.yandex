@@ -1,5 +1,5 @@
 
-import Block from '../../shared/utils/block';
+import Block from '../../shared/core/block';
 import chatLeftFunctionsTmpl from './chat-left-functions';
 
 export default class ChatLeftFunctions extends Block {
