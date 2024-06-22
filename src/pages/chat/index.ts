@@ -13,8 +13,8 @@ import { profilePage } from '../profile';
 import { removeChildrenInRoot } from '../../shared/utils/remove-children-in-root';
 import { render } from '../../shared/utils/render';
 import SearchInput from '../../components/search-input';
-import { validateFormData } from '../../shared/utils/validate-form-data';
-import { validateSubmit } from '../../shared/utils/validate-submit';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
+import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export const chatPage = new Chat('div', {
   avatar: new Avatar('div', {
