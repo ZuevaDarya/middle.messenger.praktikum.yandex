@@ -2,12 +2,13 @@ import { LOGIN_PAGE_DATA, LOGIN_PAGE_ITEMS } from '../../shared/consts/pages-dat
 import Block from '../../shared/core/block';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import InputField from '../../components/input-field';
-import loginController from '../../shared/controllers/login-controller';
+import { lOCAL_STORAGE } from '../../shared/consts/api-consts';
+import LoginController from '../../shared/controllers/login-controller';
 import loginTmpl from './login.tmpl';
 import PageContainer from '../../components/page-container';
 import Router from '../../shared/router/router';
-import { Routes } from '../../shared/consts/routes';
 import { SigninType } from '../../shared/types';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
 import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export default class Login extends Block {
@@ -17,7 +18,11 @@ export default class Login extends Block {
         {
           text: 'Вход',
           formContentClass: 'login-form-content',
-          list: LOGIN_PAGE_DATA.map(dataObj => new InputField({ ...dataObj })),
+          list: LOGIN_PAGE_DATA.map(dataObj => new InputField({
+            ...dataObj, events: {
+              blur: (e: Event) => validateFormData(e)
+            }
+          })),
           buttonClass: LOGIN_PAGE_ITEMS.button.buttonClass,
           buttonText: LOGIN_PAGE_ITEMS.button.text,
           linkUrl: LOGIN_PAGE_ITEMS.link.linkUrl,
@@ -29,14 +34,19 @@ export default class Login extends Block {
           const data = getFormData(event.target as HTMLFormElement) as unknown as SigninType;
 
           if (validateSubmit(event)) {
-            loginController.signin(data);
+            LoginController.signin(data);
           }
-        },
-        back: () => {
-          Router.go(Routes.Registration);
         },
       }
     });
+
+    window.addEventListener('load', () => {
+      if (localStorage.getItem(lOCAL_STORAGE.isSignin) === 'true') {
+        LoginController.logout();
+      }
+
+      console.log(Router.currentRoute)
+    })
   }
 
   redefineRender() {

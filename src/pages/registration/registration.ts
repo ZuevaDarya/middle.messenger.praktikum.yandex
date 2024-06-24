@@ -6,9 +6,10 @@ import InputField from '../../components/input-field';
 import loginController from '../../shared/controllers/login-controller';
 import PageContainer from '../../components/page-container';
 import registrationTmpl from './registration.tmpl';
-import Router from '../../shared/router/router';
-import { Routes } from '../../shared/consts/routes';
+//import Router from '../../shared/router/router';
+//import { Routes } from '../../shared/consts/routes';
 import { SignupType } from '../../shared/types';
+import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
 import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export default class Registration extends Block {
@@ -18,7 +19,12 @@ export default class Registration extends Block {
         {
           text: 'Регистрация',
           formContentClass: 'registration-form-content',
-          list: REGISTRATION_PAGE_DATA.map(dataObj => new InputField({ ...dataObj })),
+          list: REGISTRATION_PAGE_DATA.map(dataObj => new InputField({
+            ...dataObj,
+            events: {
+              blur: (e: Event) => validateFormData(e)
+            }
+          })),
           buttonClass: REGISTRATION_PAGE_ITEMS.button.buttonClass,
           buttonText: REGISTRATION_PAGE_ITEMS.button.text,
           linkUrl: REGISTRATION_PAGE_ITEMS.link.linkUrl,
@@ -34,10 +40,11 @@ export default class Registration extends Block {
             loginController.signup(data as unknown as SignupType);
           }
         },
-        back: () => {
-          Router.go(Routes.Login);
-        },
       }
+    });
+
+    window.addEventListener('load', () => {
+      // Router.go(Routes.Registration);
     });
   }
 
