@@ -37,13 +37,13 @@ class LoginController {
 
   async signup(data: SignupType) {
     try {
-      console.log(data)
       const response = await loginApi.signup(data);
-      console.log(response)
+
       if (this.isResponseSuccess(response)) {
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
         Router.go(Routes.Chats);
       } else {
+        alert('Вы уже зарегистрированы!')
         Router.go(Routes.Registration);
       }
     } catch (error) {
