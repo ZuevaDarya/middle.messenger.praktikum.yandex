@@ -1,5 +1,7 @@
 import Block from '../core/block';
+import { lOCAL_STORAGE } from '../consts/api-consts';
 import Route from './route';
+import { Routes } from '../consts/routes';
 
 const APP_QUERY = '#app';
 
@@ -42,6 +44,12 @@ class Router {
   }
 
   getRoute(pathname: string): Route | undefined {
+    const isUserAuth = localStorage.getItem(lOCAL_STORAGE.isSignin) === 'true';
+
+    if ((pathname === Routes.Login || pathname === Routes.Registration) && isUserAuth) {
+      return this.routes.find(route => route.match(Routes.Chats));
+    }
+
     return this.routes.find(route => route.match(pathname));
   }
 
