@@ -5,7 +5,8 @@ export const URLS = {
 };
 
 export const HEADERS = {
-  CT_APPLICATION_JSON: { 'Content-Type': 'application/json' }
+  CT_APPLICATION_JSON: { 'Content-Type': 'application/json' },
+  ACCEPT: { 'Accept': 'application/json' }
 };
 
 export const lOCAL_STORAGE = {

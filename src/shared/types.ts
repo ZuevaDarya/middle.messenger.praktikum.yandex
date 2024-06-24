@@ -80,7 +80,7 @@ export type UserType = {
   reason?: string;
 }
 
-export type LastMessage = {
+export type LastMessageType = {
   content: string;
   id: number;
   time: string;
@@ -93,7 +93,7 @@ export type ChatType = {
   avatar: null | string;
   unread_count: number;
   created_by?: number;
-  last_message?: LastMessage;
+  last_message?: LastMessageType;
 }
 
 export type IFile = {
@@ -121,4 +121,15 @@ export interface IState {
   currentChat?: ChatType;
   currentChatUsers?: UserType[];
   messages?: Record<number, MessageType[]>;
+}
+
+export interface IPopup extends IButton, IInputField {
+  title: string;
+}
+
+export interface IInputField {
+  title: string;
+  name: string;
+  type: string;
+  events?: object;
 }

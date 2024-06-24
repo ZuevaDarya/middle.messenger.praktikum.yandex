@@ -9,7 +9,10 @@ export class BaseAPI {
   constructor({ path }: Record<string, string>) {
     this.http = new HTTPTransport();
     this.baseUrl = `${URLS.BASE}${path}`;
-    this.headers = HEADERS.CT_APPLICATION_JSON;
+    this.headers = {
+      ...HEADERS.CT_APPLICATION_JSON,
+      ...HEADERS.ACCEPT
+    };
   }
 
   get(url: string) {
