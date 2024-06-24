@@ -28,7 +28,7 @@ export default class HTTPTransport {
     this.request(url, { ...options, method: Method.Delete }, options.timeout)
   )
 
-  request(url: string, options: Options = {method: Method.Get}, timeout = 5000): Promise<XMLHttpRequest> {
+  request(url: string, options: Options = { method: Method.Get }, timeout = 5000): Promise<XMLHttpRequest> {
     const { data, method, headers } = options;
 
     return new Promise((resolve, reject) => {
@@ -60,7 +60,6 @@ export default class HTTPTransport {
       if (method === Method.Get || method === Method.Delete || !data) {
         xhr.send();
       } else {
-        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));
       }
     });
