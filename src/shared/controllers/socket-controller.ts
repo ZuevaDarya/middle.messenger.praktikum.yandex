@@ -18,7 +18,7 @@ class SocketController {
     return this.chats.findIndex(chat => chat.chatId === chatId);
   }
 
-  getPrivious(chatId: number) {
+  getPrevious(chatId: number) {
     const idx = this.findChatIndex(chatId);
     this.chats[idx].socket.sendData({ type: TypesWebsocketMessage.GetOld, content: '0' });
   }
@@ -70,7 +70,7 @@ class SocketController {
     }
 
     await this.connectToSocket(chatId, this.userInfo.id, token);
-    this.getPrivious(chatId);
+    this.getPrevious(chatId);
   }
 }
 

@@ -6,5 +6,5 @@ export enum Routes {
   ProfileData = '/profile-data',
   ProfilePassword = '/profile-password',
   Error400 = '/error-400',
-  Error500 = 'error-500',
+  Error500 = '/error-500',
 }
