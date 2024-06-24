@@ -2,6 +2,7 @@ import './chat.scss';
 
 const chatTmpl = `
   <div class="chat-page-main">
+    {{{popup}}}
     <div class="chat-container">
       <div class="chat-left-container">
         <div class="chat-header chat-left-header">

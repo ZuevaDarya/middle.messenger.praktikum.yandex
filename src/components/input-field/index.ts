@@ -1,12 +1,7 @@
 import Block from '../../shared/core/block';
+import { IInputField } from '../../shared/types';
 import Input from '../input';
 import inputFieldTmpl from './input-field';
-
-interface IInputField {
-  title: string;
-  name: string;
-  type: string;
-}
 
 export default class InputField extends Block {
   constructor(props: IInputField) {
@@ -15,7 +10,8 @@ export default class InputField extends Block {
       input: new Input({
         type: props.type,
         name: props.name,
-        placeholder: props.title
+        placeholder: props.title,
+        events: props.events
       }),
     })
   }
