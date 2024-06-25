@@ -10,7 +10,7 @@ export default class Popup extends Block {
     super('div', {
       formTitle: new FormTitle({text: props.title}),
       inputField: new InputField({ ...props }),
-      button: new Button({ text: props.text })
+      button: new Button({ buttonText: props.buttonText })
     });
   }
 
