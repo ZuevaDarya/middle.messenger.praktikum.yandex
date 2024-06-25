@@ -1,7 +1,9 @@
+import { IBlockProps, IState } from '../types';
 import EventBus from './event-bus';
 import { v4 as getUUID } from 'uuid';
 import Handlebars from 'handlebars';
-import { IBlockProps } from '../types';
+import isEqual from '../utils/is-equal';
+
 
 type Meta = {
   tagName: string;
@@ -19,19 +21,19 @@ type PropEvent = {
   event: EventListener;
 }
 export default class Block {
-  private static readonly EVENTS = {
+  private readonly EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
   };
 
-  private readonly meta: Meta;
-  private readonly props: IBlockProps;
+  protected meta: Meta;
+  protected props: IBlockProps;
   private readonly eventBus: () => EventBus;
 
-  private lists: IBlockProps = {};
-  private children: IBlockProps;
+  protected lists: IBlockProps = {};
+  protected children: IBlockProps;
   private htmlElement?: HTMLElement;
 
   protected id = getUUID();
@@ -58,13 +60,16 @@ export default class Block {
     this.eventBus = () => eventBus;
     this.registerEvents(eventBus);
 
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(this.EVENTS.INIT);
   }
 
   init() {
+    this.redefineInit();
     this.addElement();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(this.EVENTS.FLOW_RENDER);
   }
+
+  protected redefineInit() { }
 
   private componentDidMount() {
     this.redefineComponentDidMount();
@@ -73,11 +78,11 @@ export default class Block {
   redefineComponentDidMount() { }
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(this.EVENTS.FLOW_CDM);
   }
 
-  private componentDidUpdate() {
-    const response = this.redefineComponentDidUpdate();
+  private componentDidUpdate(oldProps: IBlockProps, newProps: IBlockProps) {
+    const response = this.redefineComponentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
     }
@@ -85,8 +90,20 @@ export default class Block {
     this.render();
   }
 
-  redefineComponentDidUpdate() {
-    return true;
+  redefineComponentDidUpdate(oldProps: IBlockProps, newProps: IBlockProps) {
+    return !isEqual(oldProps, newProps);
+  }
+
+  preRender() { }
+
+  removeChildrenInRoot() {
+    const element = document.querySelector('#app');
+    const nav = element?.querySelector('nav');
+
+    const childrens = element?.children;
+    const arr = [...(childrens as HTMLCollection)];
+
+    arr.map(item => item !== nav ? element?.removeChild(item) : '');
   }
 
   private render() {
@@ -95,7 +112,7 @@ export default class Block {
 
     const newElement = fragmentContent.firstElementChild!;
 
-    this.htmlElement!.replaceWith(newElement)
+    this.htmlElement?.replaceWith(newElement);
     this.htmlElement = newElement as HTMLElement;
 
     this.addEvents();
@@ -109,7 +126,7 @@ export default class Block {
     this.createStubsForChildrenElements(propsAndStubs, tmpId);
 
     const fragment = document.createElement('template');
-    fragment.innerHTML = Handlebars.compile(this.redefineRender())({ ...propsAndStubs, ...this.state});
+    fragment.innerHTML = Handlebars.compile(this.redefineRender())({ ...propsAndStubs, ...this.state });
 
     this.replaceStubByElement(fragment);
     this.replaceListItemsStubsByElements(fragment, tmpId);
@@ -153,7 +170,7 @@ export default class Block {
     }
   }
 
-  setProps(nextProps: IBlockProps) {
+  setProps(nextProps: IState) {
     if (!nextProps) {
       return;
     }
@@ -162,10 +179,13 @@ export default class Block {
   }
 
   private registerEvents(eventBus: EventBus): void {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this.componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this.componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this.render.bind(this));
+    eventBus.on(this.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(this.EVENTS.FLOW_CDM, this.componentDidMount.bind(this));
+    eventBus.on(
+      this.EVENTS.FLOW_CDU,
+      this.componentDidUpdate.bind(this) as (...args: unknown[]) => void
+    );
+    eventBus.on(this.EVENTS.FLOW_RENDER, this.render.bind(this));
   }
 
   private addElement() {
@@ -287,10 +307,8 @@ export default class Block {
   }
 
   private makePropsProxy(props: IBlockProps) {
-    const eventBus = this.eventBus;
-
     return new Proxy(props, {
-      get(target, property: string) {
+      get: (target, property: string) => {
         if (property.indexOf('_') === 0) {
           throw new Error('Access denied');
         }
@@ -298,18 +316,18 @@ export default class Block {
         const value = target[property];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, property: string, value) {
+      set: (target, property: string, value) => {
         if (property.indexOf('_') === 0) {
           throw new Error('Access denied');
         }
 
         const oldTarget = { ...target };
         target[property] = value;
-        eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(this.EVENTS.FLOW_CDU, oldTarget, target);
 
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Access denied');
       }
     });

@@ -3,7 +3,7 @@ import queryStringify from '../utils/query-stringify';
 
 type Options = {
   method: Method;
-  data?: Record<string, unknown>;
+  data?: unknown;
   headers?: Record<string, string>
   timeout?: number;
 }
@@ -35,7 +35,7 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
 
       if (method === Method.Get && data) {
-        url = `${url}${queryStringify(data)}`;
+        url = `${url}${queryStringify(data as Record<string, unknown>)}`;
       }
 
       xhr.open(method, url);
@@ -55,6 +55,7 @@ export default class HTTPTransport {
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+
       xhr.withCredentials = true;
 
       if (method === Method.Get || method === Method.Delete || !data) {

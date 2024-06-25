@@ -3,11 +3,9 @@ import Block from '../../shared/core/block';
 import { FORM_INPUT_NAMES } from '../../shared/consts/form-input-names';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import InputField from '../../components/input-field';
-import loginController from '../../shared/controllers/login-controller';
+import LoginController from '../../shared/controllers/login-controller';
 import PageContainer from '../../components/page-container';
 import registrationTmpl from './registration.tmpl';
-//import Router from '../../shared/router/router';
-//import { Routes } from '../../shared/consts/routes';
 import { SignupType } from '../../shared/types';
 import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
 import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
@@ -37,15 +35,15 @@ export default class Registration extends Block {
           delete data[FORM_INPUT_NAMES.passwordAgain];
 
           if (validateSubmit(event)) {
-            loginController.signup(data as unknown as SignupType);
+            LoginController.signup(data as unknown as SignupType);
           }
         },
       }
     });
+  }
 
-    window.addEventListener('load', () => {
-      // Router.go(Routes.Registration);
-    });
+  preRender(): void {
+    this.removeChildrenInRoot();
   }
 
   redefineRender() {

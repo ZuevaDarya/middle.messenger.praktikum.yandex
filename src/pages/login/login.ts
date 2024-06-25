@@ -2,11 +2,9 @@ import { LOGIN_PAGE_DATA, LOGIN_PAGE_ITEMS } from '../../shared/consts/pages-dat
 import Block from '../../shared/core/block';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import InputField from '../../components/input-field';
-import { lOCAL_STORAGE } from '../../shared/consts/api-consts';
 import LoginController from '../../shared/controllers/login-controller';
 import loginTmpl from './login.tmpl';
 import PageContainer from '../../components/page-container';
-import Router from '../../shared/router/router';
 import { SigninType } from '../../shared/types';
 import { validateFormData } from '../../shared/utils/validation-func/validate-form-data';
 import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
@@ -40,13 +38,11 @@ export default class Login extends Block {
       }
     });
 
-    window.addEventListener('load', () => {
-      if (localStorage.getItem(lOCAL_STORAGE.isSignin) === 'true') {
-        LoginController.logout();
-      }
+    //LoginController.logout();
+  }
 
-      console.log(Router.currentRoute)
-    })
+  preRender(): void {
+    this.removeChildrenInRoot();
   }
 
   redefineRender() {

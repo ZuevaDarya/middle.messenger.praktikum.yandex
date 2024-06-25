@@ -2,8 +2,8 @@ import { ChatType, IState, UserType } from '../types';
 import EventBus from './event-bus';
 import { set } from '../utils/set';
 
-enum StoreEvents {
-  Update = 'update',
+export enum StoreEvents {
+  Updated = 'updated',
 }
 
 class Store extends EventBus {
@@ -20,7 +20,7 @@ class Store extends EventBus {
 
   setState(path: string, newData: unknown) {
     set(this.state, path, newData);
-    this.emit(StoreEvents.Update);
+    this.emit(StoreEvents.Updated);
   }
 }
 

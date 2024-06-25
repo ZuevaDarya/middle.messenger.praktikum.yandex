@@ -23,7 +23,7 @@ export class BaseAPI {
     return this.http.post(`${this.baseUrl}/${url}`, { headers: this.headers, data });
   }
 
-  put(url: string, data: Record<string, unknown>, headers?: Record<string, string>) {
+  put(url: string, data: unknown, headers?: Record<string, string>) {
     return this.http.put(`${this.baseUrl}/${url}`, {
       headers: headers ? headers : this.headers,
       data

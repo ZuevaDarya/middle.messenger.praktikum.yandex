@@ -55,8 +55,8 @@ class LoginController {
     try {
       socketController.closeAllChatsSocket();
       await loginApi.logout();
-      Router.go(Routes.Login);
       localStorage.setItem(lOCAL_STORAGE.isSignin, 'false');
+      Router.go(Routes.Login);
     } catch (error) {
       throw new Error(String(error));
     }
@@ -64,10 +64,11 @@ class LoginController {
 
   async getUserInfo() {
     try {
-      const userInfo = (await loginApi.getUserInfo()).response;
+      const userInfoResponse = (await loginApi.getUserInfo()).response;
+      const userInfo = JSON.parse(userInfoResponse);
       store.setState('user', userInfo);
 
-      return userInfo;
+      return userInfoResponse;
     } catch (error) {
       throw new Error(String(error));
     }
