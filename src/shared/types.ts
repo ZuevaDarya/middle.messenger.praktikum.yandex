@@ -18,7 +18,7 @@ export interface ILink {
 
 export interface IButton {
   buttonClass?: string;
-  text: string;
+  buttonText: string;
   page?: string;
 }
 
@@ -72,6 +72,7 @@ export type UserType = {
   id: number;
   first_name: string;
   second_name: string;
+  display_name?: string;
   login: string;
   email: string;
   password: string;
@@ -125,6 +126,7 @@ export interface IState {
 
 export interface IPopup extends IButton, IInputField {
   title: string;
+  isDisplay: boolean;
 }
 
 export interface IInputField {
@@ -132,4 +134,35 @@ export interface IInputField {
   name: string;
   type: string;
   events?: object;
+}
+
+export interface IChatList {
+  chats: ChatType[]
+}
+
+export type UserProfileInfoType = {
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
+};
+
+export type UserPasswordType = {
+  oldPassword: string;
+  newPassword: string;
+  repeatPassword?: string;
+};
+
+export interface IProfileAvatar {
+  src: string;
+  name: string;
+}
+
+export interface IProfileItem {
+  attr?: object;
+  title: string;
+  events?: object;
+  data?: string;
 }
