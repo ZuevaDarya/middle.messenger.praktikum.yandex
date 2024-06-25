@@ -6,7 +6,7 @@ export default class Button extends Block {
   constructor(props: IButton) {
     super('button', {
       attr: { class: props?.buttonClass },
-      text: props.text,
+      text: props.buttonText,
       page: props?.page
     });
   }

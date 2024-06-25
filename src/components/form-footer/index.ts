@@ -9,7 +9,7 @@ export default class FormFooter extends Block {
     super('div', {
       button: new Button({
         buttonClass: props.buttonClass,
-        text: props.buttonText,
+        buttonText: props.buttonText,
       }),
       link: new Link({
         url: props.linkUrl,

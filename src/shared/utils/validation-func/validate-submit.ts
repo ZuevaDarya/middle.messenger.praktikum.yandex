@@ -1,6 +1,5 @@
 import { checkDataValid } from './check-data-valid';
 import { FORM_INPUT_NAMES } from '../../consts/form-input-names';
-import { getFormData } from './get-form-data';
 import { VALIDATE_ERRORS } from '../../consts/validate-errors';
 
 export function validateSubmit(e: Event): boolean {
@@ -44,8 +43,6 @@ export function validateSubmit(e: Event): boolean {
       btnParent?.removeChild(errorText);
     }
     searchInput?.classList.remove('search-input_error');
-    console.log(getFormData(form));
-
     return true;
   }
 }
