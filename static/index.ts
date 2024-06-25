@@ -10,12 +10,17 @@ import Router from '../src/shared/router/router';
 import { Routes } from '../src/shared/consts/routes';
 
 Router
-  .use(Routes.Login, Login)
-  .use(Routes.Registration, Registration)
-  .use(Routes.Chats, Chat)
-  .use(Routes.Profile, Profile)
-  .use(Routes.ProfileData, ProfileData)
-  .use(Routes.ProfilePassword, ProfilePassword)
-  .use(Routes.Error400, Error400)
-  .use(Routes.Error500, Error500)
-  .start();
+.use(Routes.Login, Login)
+.use(Routes.Registration, Registration)
+.use(Routes.Chats, Chat)
+.use(Routes.Profile, Profile)
+.use(Routes.ProfileData, ProfileData)
+.use(Routes.ProfilePassword, ProfilePassword)
+.use(Routes.Error400, Error400)
+.use(Routes.Error500, Error500)
+.start();
+
+window.addEventListener('DOMContentLoaded', (e: Event) => {
+  e.preventDefault();
+  Router.go(Routes.Login);
+})

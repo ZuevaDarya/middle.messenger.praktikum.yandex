@@ -43,6 +43,7 @@ class Route {
   render() {
     if (!this.block) {
       this.block = new this.blockClass();
+      this.block.preRender();
       render(this.props.rootQuery, this.block);
       return;
     }

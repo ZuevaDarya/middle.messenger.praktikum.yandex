@@ -46,7 +46,13 @@ class Router {
   getRoute(pathname: string): Route | undefined {
     const isUserAuth = localStorage.getItem(lOCAL_STORAGE.isSignin) === 'true';
 
+    if (pathname !== Routes.Login && pathname !== Routes.Registration && !isUserAuth) {
+      console.log(pathname, isUserAuth, 'isAuth = false')
+      return this.routes.find(route => route.match(Routes.Login));
+    }
+
     if ((pathname === Routes.Login || pathname === Routes.Registration) && isUserAuth) {
+      console.log(pathname, isUserAuth, 'isAuth = true')
       return this.routes.find(route => route.match(Routes.Chats));
     }
 
@@ -68,6 +74,7 @@ class Router {
 
   private onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+    console.log(route)
 
     if (!route) {
       return;
@@ -79,6 +86,11 @@ class Router {
 
     this._currentRoute = route;
     route.render();
+  }
+
+  private onErrorPage() {
+    this.go(Routes.Error400);
+    return this.routes.find(route => route.match(Routes.Error400));
   }
 }
 
