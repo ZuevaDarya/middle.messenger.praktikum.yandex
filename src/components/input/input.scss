@@ -32,3 +32,33 @@
     }
   }
 }
+
+input[type='file'] {
+  border: none;
+
+  & + label {
+    display: none;
+  }
+
+  &::file-selector-button {
+    font-family: $font-body;
+    font: $font-regular;
+    color: $input-load-file-text-color;
+    text-decoration: underline;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  &:hover {
+    &::file-selector-button {
+      color: $input-load-file-text-color-hover;
+    }
+  }
+}

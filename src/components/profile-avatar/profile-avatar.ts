@@ -1,6 +1,7 @@
 import './profile-avatar.scss'
 
 const profileAvatarTmpl = `
+  {{{popup}}}
   <div class='profile-avatar'>
     <div class='profile-avatar__container'>
       <span class='profile-avatar__background'></span>
