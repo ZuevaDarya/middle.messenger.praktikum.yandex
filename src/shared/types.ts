@@ -20,6 +20,7 @@ export interface IButton {
   buttonClass?: string;
   buttonText: string;
   page?: string;
+  events?: object;
 }
 
 export interface IFormFooter {
@@ -165,4 +166,11 @@ export interface IProfileItem {
   title: string;
   events?: object;
   data?: string;
+}
+
+export interface IError {
+  code: string;
+  title: string;
+  text: string;
+  button: IButton;
 }

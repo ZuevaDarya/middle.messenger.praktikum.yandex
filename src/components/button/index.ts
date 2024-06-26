@@ -7,6 +7,7 @@ export default class Button extends Block {
     super('button', {
       attr: { class: props?.buttonClass },
       text: props.buttonText,
+      events: props?.events,
       page: props?.page
     });
   }

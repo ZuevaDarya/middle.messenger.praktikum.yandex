@@ -19,8 +19,3 @@ Router
 .use(Routes.Error400, Error400)
 .use(Routes.Error500, Error500)
 .start();
-
-window.addEventListener('DOMContentLoaded', (e: Event) => {
-  e.preventDefault();
-  Router.go(Routes.Login);
-})

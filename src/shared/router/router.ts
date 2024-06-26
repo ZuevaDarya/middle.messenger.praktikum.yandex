@@ -56,6 +56,8 @@ class Router {
       return this.routes.find(route => route.match(Routes.Chats));
     }
 
+    this.checkOnErrorRoute(pathname);
+
     return this.routes.find(route => route.match(pathname));
   }
 
@@ -74,7 +76,6 @@ class Router {
 
   private onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-    console.log(route)
 
     if (!route) {
       return;
@@ -91,6 +92,16 @@ class Router {
   private onErrorPage() {
     this.go(Routes.Error400);
     return this.routes.find(route => route.match(Routes.Error400));
+  }
+
+  private checkOnErrorRoute(pathname: string) {
+    const isConstRoute = Object.values(Routes).find(
+      constPatname => constPatname === pathname
+    );
+
+    if (!isConstRoute) {
+      this.onErrorPage();
+    }
   }
 }
 
