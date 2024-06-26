@@ -20,7 +20,7 @@ export default class Profile extends Block {
     store.on(StoreEvents.Updated, () => {
       this.setProps(store.getState());
       this.redefineInit();
-    })
+    });
   }
 
   preRender() {
