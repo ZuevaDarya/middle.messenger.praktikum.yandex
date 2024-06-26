@@ -27,7 +27,7 @@ class LoginController {
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
         Router.go(Routes.Chats);
       } else {
-        alert('Вы не зарегистрированы!')
+        alert('Вы не авторизированы! Проверьте корректность введенных данных!')
         Router.go(Routes.Login);
       }
     } catch (error) {

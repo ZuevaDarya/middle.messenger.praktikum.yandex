@@ -47,12 +47,10 @@ class Router {
     const isUserAuth = localStorage.getItem(lOCAL_STORAGE.isSignin) === 'true';
 
     if (pathname !== Routes.Login && pathname !== Routes.Registration && !isUserAuth) {
-      console.log(pathname, isUserAuth, 'isAuth = false')
       return this.routes.find(route => route.match(Routes.Login));
     }
 
     if ((pathname === Routes.Login || pathname === Routes.Registration) && isUserAuth) {
-      console.log(pathname, isUserAuth, 'isAuth = true')
       return this.routes.find(route => route.match(Routes.Chats));
     }
 

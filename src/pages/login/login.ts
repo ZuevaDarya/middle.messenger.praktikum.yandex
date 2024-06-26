@@ -37,8 +37,6 @@ export default class Login extends Block {
         },
       }
     });
-
-    //LoginController.logout();
   }
 
   preRender(): void {
