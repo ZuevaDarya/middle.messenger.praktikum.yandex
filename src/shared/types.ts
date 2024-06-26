@@ -127,7 +127,7 @@ export interface IState {
 
 export interface IPopup extends IButton, IInputField {
   title: string;
-  isDisplay: boolean;
+  isDisplay?: boolean;
 }
 
 export interface IInputField {
@@ -157,8 +157,10 @@ export type UserPasswordType = {
 };
 
 export interface IProfileAvatar {
-  src: string;
+  attr?: object;
+  src?: string;
   name: string;
+  popup?: Block;
 }
 
 export interface IProfileItem {
@@ -173,4 +175,17 @@ export interface IError {
   title: string;
   text: string;
   button: IButton;
+}
+
+export interface IProfileCloseButton {
+  events: object;
+}
+
+export interface IProfileInput {
+  title: string;
+  type: string;
+  name: string;
+  data?: string;
+  attr?: object;
+  events?: object;
 }

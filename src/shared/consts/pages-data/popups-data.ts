@@ -20,10 +20,10 @@ export const POPUPS_DATA = {
     type: 'text',
     labelText: 'Логин'
   },
-  loadChatAvatar: {
+  loadAvatar: {
     buttonText: 'Поменять',
     title: 'Загрузите файл',
-    name: 'load_chat_avatar_chat',
+    name: 'load_avatar',
     type: 'file',
   },
 };

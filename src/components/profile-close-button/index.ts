@@ -1,19 +1,12 @@
 import Block from '../../shared/core/block';
+import { IProfileCloseButton } from '../../shared/types';
 import profileCloseButtonTmpl from './profile-close-button';
-import Router from '../../shared/router/router';
-import { Routes } from '../../shared/consts/routes';
 
 export default class ProfileCloseButton extends Block {
-  constructor() {
-    super('div', {
-      events: {
-        click: (event: MouseEvent) => {
-          event.preventDefault();
-          Router.go(Routes.Chats)
-        }
-      }
-    })
+  constructor(props: IProfileCloseButton) {
+    super('div', { ...props })
   }
+
   redefineRender() {
     return profileCloseButtonTmpl;
   }
