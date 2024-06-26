@@ -1,5 +1,4 @@
 import { UserPasswordType, UserProfileInfoType } from '../types';
-
 import Router from '../router/router';
 import { Routes } from '../consts/routes';
 import store from '../core/store';
@@ -11,10 +10,12 @@ class UserController {
       const response = await userApi.changeUserProfile(userData);
 
       if (response) {
-        store.setState('user', response.response);
+        const userData = JSON.parse(response.response);
+
+        store.setState('user', userData);
         Router.go(Routes.Profile);
       }
-    } catch(error) {
+    } catch (error) {
       throw new Error(String(error));
     }
   }
@@ -24,9 +25,11 @@ class UserController {
       const response = await userApi.changeUserAvatar(avatar);
 
       if (response) {
-        store.setState('user', response.response);
+        const userData = JSON.parse(response.response);
+
+        store.setState('user', userData);
       }
-    } catch(error) {
+    } catch (error) {
       throw new Error(String(error));
     }
   }
@@ -37,8 +40,11 @@ class UserController {
 
       if (response) {
         Router.go(Routes.Profile);
+      } else {
+        alert('Пароль не обновлен! Проверьте корректность введенных данных!');
       }
-    } catch(error) {
+
+    } catch (error) {
       throw new Error(String(error));
     }
   }
@@ -46,7 +52,7 @@ class UserController {
   async searchUserByLogin(login: string) {
     try {
       return (await userApi.searchUserByLogin(login)).response;
-    } catch(error) {
+    } catch (error) {
       throw new Error(String(error));
     }
   }
@@ -54,7 +60,7 @@ class UserController {
   async getUserInfoById(userId: number) {
     try {
       return (await userApi.getUserInfoById(userId)).response;
-    } catch(error) {
+    } catch (error) {
       throw new Error(String(error));
     }
   }
