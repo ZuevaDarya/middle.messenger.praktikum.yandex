@@ -23,7 +23,8 @@ export const POPUPS_DATA = {
   loadAvatar: {
     buttonText: 'Поменять',
     title: 'Загрузите файл',
-    name: 'load_avatar',
+    name: 'avatar',
     type: 'file',
+    accept: 'image/*'
   },
 };

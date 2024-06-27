@@ -127,6 +127,7 @@ export interface IState {
 
 export interface IPopup extends IButton, IInputField {
   title: string;
+  accept?: string;
   isDisplay?: boolean;
 }
 
@@ -134,6 +135,8 @@ export interface IInputField {
   title: string;
   name: string;
   type: string;
+  labelText?: string;
+  accept?: string;
   events?: object;
 }
 

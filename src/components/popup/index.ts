@@ -12,19 +12,17 @@ export default class Popup extends Block {
       formTitle: new FormTitle({ text: props.title }),
       inputField: new InputField({ ...props }),
       button: new Button({ buttonText: props.buttonText }),
+      events: {
+        click: {
+          event: (e: Event) => {
+            e.preventDefault();
+            this.hide();
+          },
+          querySelector: '.popup__close'
+        },
+        ...props.events
+      }
     });
-
-    if (document.querySelector('.popup')) {
-      const closeSpan = document.querySelector('.popup__close');
-      console.log(closeSpan)
-      closeSpan!.addEventListener('click', (e: Event) => {
-       // e.preventDefault();
-        //e.stopPropagation();
-        e.stopImmediatePropagation();
-        console.log('ss')
-        this.hide();
-      })
-    }
   }
 
   redefineRender() {

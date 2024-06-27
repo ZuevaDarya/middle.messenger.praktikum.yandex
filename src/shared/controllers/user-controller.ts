@@ -26,10 +26,10 @@ class UserController {
 
       if (response) {
         const userData = JSON.parse(response.response);
-
         store.setState('user', userData);
       }
     } catch (error) {
+      alert('Файл слишком большой!');
       throw new Error(String(error));
     }
   }

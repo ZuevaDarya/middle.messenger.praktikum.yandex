@@ -6,8 +6,11 @@ import {
 import store, { StoreEvents } from '../../shared/core/store';
 import Block from '../../shared/core/block';
 import Button from '../../components/button';
+import { fileReader } from '../../shared/utils/file-reader';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import LoginController from '../../shared/controllers/login-controller';
+import Popup from '../../components/popup';
+import { POPUPS_DATA } from '../../shared/consts/pages-data/popups-data';
 import ProfileAvatar from '../../components/profile-avatar';
 import ProfileCloseButton from '../../components/profile-close-button';
 import ProfileInput from '../../components/profile-input';
@@ -88,6 +91,36 @@ export default class ProfilePassword extends Block {
         }
       })
     );
+
+    this.props['events'] = {
+      click: {
+        event: (e: Event) => {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+
+          this.children['popup'] = new Popup({
+            title: POPUPS_DATA.loadAvatar.title,
+            buttonText: POPUPS_DATA.loadAvatar.buttonText,
+            name: POPUPS_DATA.loadAvatar.name,
+            type: POPUPS_DATA.loadAvatar.type,
+            accept: POPUPS_DATA.loadAvatar.accept,
+            events: {
+              submit: {
+                event: (e: Event) => {
+                  e.preventDefault();
+
+                  fileReader(e.target as HTMLFormElement);
+                  Router.go(Router.currentRoute);
+                },
+                querySelector: 'form'
+              }
+            }
+          });
+        },
+        querySelector: '.profile-avatar__container'
+      } as unknown as EventListener
+    }
   }
 
   redefineRender() {

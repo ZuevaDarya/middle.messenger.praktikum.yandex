@@ -5,6 +5,7 @@ import {
 } from '../../shared/consts/pages-data/profile-page-data';
 import store, { StoreEvents } from '../../shared/core/store';
 import Block from '../../shared/core/block';
+import { fileReader } from '../../shared/utils/file-reader';
 import LoginController from '../../shared/controllers/login-controller';
 import Popup from '../../components/popup';
 import { POPUPS_DATA } from '../../shared/consts/pages-data/popups-data';
@@ -24,16 +25,9 @@ export default class Profile extends Block {
           click: (event: MouseEvent) => {
             event.preventDefault();
             Router.go(Routes.Chats)
-          }
+          },
         }
       }),
-      popup: new Popup({
-        title: POPUPS_DATA.loadAvatar.title,
-        isDisplay: false,
-        buttonText: POPUPS_DATA.loadAvatar.buttonText,
-        name: POPUPS_DATA.loadAvatar.name,
-        type: POPUPS_DATA.loadAvatar.type
-      })
     });
 
     store.on(StoreEvents.Updated, () => {
@@ -58,14 +52,6 @@ export default class Profile extends Block {
       user.phone
     ];
 
-    // this.children['popup'] = new Popup({
-    //   title: POPUPS_DATA.loadAvatar.title,
-    //   isDisplay: false,
-    //   buttonText: POPUPS_DATA.loadAvatar.buttonText,
-    //   name: POPUPS_DATA.loadAvatar.name,
-    //   type: POPUPS_DATA.loadAvatar.type
-    // });
-
     if (user.avatar) {
       this.children['profileAvatar'] = new ProfileAvatar({
         name: user.first_name,
@@ -88,6 +74,36 @@ export default class Profile extends Block {
     );
 
     this.lists['profileSettingList'] = PROFILE_SETTINGS_DATA.map(item => new ProfileItem({ ...item }));
+
+    this.props['events'] = {
+      click: {
+        event: (e: Event) => {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+
+          this.children['popup'] = new Popup({
+            title: POPUPS_DATA.loadAvatar.title,
+            buttonText: POPUPS_DATA.loadAvatar.buttonText,
+            name: POPUPS_DATA.loadAvatar.name,
+            type: POPUPS_DATA.loadAvatar.type,
+            accept: POPUPS_DATA.loadAvatar.accept,
+            events: {
+              submit: {
+                event: (e: Event) => {
+                  e.preventDefault();
+
+                  fileReader(e.target as HTMLFormElement);
+                  Router.go(Router.currentRoute);
+                },
+                querySelector: 'form'
+              }
+            }
+          });
+        },
+        querySelector: '.profile-avatar__container'
+      } as unknown as EventListener
+    }
   }
 
   redefineRender() {

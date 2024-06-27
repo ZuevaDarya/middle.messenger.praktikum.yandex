@@ -8,4 +8,3 @@ export function getFormData(form: HTMLFormElement) {
 
   return data;
 }
-

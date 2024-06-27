@@ -5,6 +5,7 @@ interface IInput {
   name: string;
   type: string
   placeholder: string;
+  accept?: string;
   events?: object;
 }
 
@@ -12,7 +13,8 @@ export default class Input extends Block {
   constructor(props: IInput) {
     super('input', {
       ...props,
-      events: props.events
+      events: props.events,
+      accept: props.accept
     });
   }
 
