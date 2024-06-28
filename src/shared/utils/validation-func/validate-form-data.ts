@@ -15,7 +15,7 @@ export function validateFormData(e: Event): void {
     return;
   }
 
-  if (!dataValidState?.isValid) {
+  if (!dataValidState?.isValid && input.name !== FORM_INPUT_NAMES.message) {
     prepareSpanError(dataValidState?.errorMsg as string, input);
   } else {
     removeSpanError(input);

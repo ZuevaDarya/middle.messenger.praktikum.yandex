@@ -17,7 +17,8 @@ export default class ChatListItem extends Block {
         senderName: props.lastMessage?.user.display_name
       }),
       countMessage: props.countMessage,
-      time: changeTimeFormat(props?.lastMessage?.time)
+      time: changeTimeFormat(props?.lastMessage?.time),
+      events: props.events
     });
   }
 

@@ -1,0 +1,35 @@
+@import '../../shared/styles/variables.scss';
+
+.chat-right-header {
+  max-height: 95px;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  &__col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__settings-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 100px;
+    background-color: $background-color;
+    background-image: url('../../../public/icons/settings.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $settings-button-hover-bg-color;
+    }
+  }
+}

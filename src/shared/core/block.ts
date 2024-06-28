@@ -97,12 +97,11 @@ export default class Block {
 
   removeChildrenInRoot() {
     const element = document.querySelector('#app');
-    const nav = element?.querySelector('nav');
 
     const childrens = element?.children;
     const arr = [...(childrens as HTMLCollection)];
 
-    arr.map(item => item !== nav ? element?.removeChild(item) : '');
+    arr.map(item => element?.removeChild(item));
   }
 
   private render() {

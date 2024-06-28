@@ -43,6 +43,8 @@ export function validateSubmit(e: Event): boolean {
       btnParent?.removeChild(errorText);
     }
     searchInput?.classList.remove('search-input_error');
+    (searchInput as HTMLInputElement).value = '';
+
     return true;
   }
 }

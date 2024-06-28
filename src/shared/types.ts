@@ -141,7 +141,12 @@ export interface IInputField {
 }
 
 export interface IChatList {
-  chats: ChatType[]
+  chats: ChatType[];
+  events?: object;
+  chatRightHeader?: Block;
+  chatMessages?: Block;
+  chatSendMessageBlock?: Block;
+  chatNotice?: Block;
 }
 
 export type UserProfileInfoType = {
@@ -197,7 +202,6 @@ export interface IChatTitle {
   title: string;
 }
 
-
 export interface IChatListItemMessage {
   lastMessage: string;
   senderName?: string;
@@ -206,5 +210,16 @@ export interface IChatListItemMessage {
 export interface IChatListItem extends IAvatar, IChatTitle {
   lastMessage: LastMessageType;
   countMessage?: string | null;
+  events?: object;
 }
 
+export interface IChatNotice {
+  text: string;
+}
+
+export interface IChatRightHeader extends IAvatar, IChatTitle { }
+
+export interface IChatButton {
+  attr?: object;
+  events?: object;
+}

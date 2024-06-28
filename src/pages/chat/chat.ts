@@ -1,3 +1,4 @@
+import { CHAT_AVATAR_DATA, CHAT_NOTICE, USER_AVATAR_DATA } from '../../shared/consts/pages-data/chat-page-data';
 import store, { StoreEvents } from '../../shared/core/store';
 import Avatar from '../../components/avatar';
 import Block from '../../shared/core/block';
@@ -5,40 +6,25 @@ import ChatController from '../../shared/controllers/chat-controller';
 import ChatHeaderLink from '../../components/chat-header-link';
 import ChatLeftFunctions from '../../components/chat-left-functions';
 import ChatList from '../../components/chat-list';
+import ChatMessages from '../../components/chat-messages';
+import ChatNotice from '../../components/chat-notice';
+import ChatRightHeader from '../../components/chat-right-header';
+import ChatSendMessageBlock from '../../components/chat-send-message-block';
 import chatTmpl from './chat.tmpl';
-// import { ChatType } from '../../shared/types';
 import { connect } from '../../shared/utils/connect';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import LoginController from '../../shared/controllers/login-controller';
-// import { IBlockProps } from '../../shared/types';
 import Popup from '../../components/popup';
 import { POPUPS_DATA } from '../../shared/consts/pages-data/popups-data';
 import Router from '../../shared/router/router';
 import { Routes } from '../../shared/consts/routes';
 import { URLS } from '../../shared/consts/api-consts';
-import { USER_AVATAR_DATA } from '../../shared/consts/pages-data/chat-page-data';
 
 class Chat extends Block {
   constructor() {
     super('div', {
       chatHeaderLink: new ChatHeaderLink({ text: 'Профиль', url: Routes.Profile }),
       chatLeftFunctions: new ChatLeftFunctions(),
-      // chatList: new ChatList({
-      //   chats: []
-      // }),
-      // chatAvatar: ,
-      // chatTitle: ,
-      // day: ,
-      // messages: ,
-      // chatSendMessageBlock: ,
-      // events: {
-      //   load: () => {
-      //     //Router.go(Routes.Chats);
-      //     LoginController.start();
-      //     ChatController.getUserChats();
-      //     console.log('s')
-      //   },
-      // }
     })
 
     store.on(StoreEvents.Updated, () => {
@@ -56,6 +42,7 @@ class Chat extends Block {
   protected redefineInit() {
     const user = store.getState().user;
     const chats = store.getState().chats;
+    const currentChat = store.getState().currentChat;
 
     if (user.avatar) {
       this.children['avatar'] = new Avatar({
@@ -69,9 +56,25 @@ class Chat extends Block {
       });
     }
 
+    if (chats?.length === 0) {
+      this.children['chatNotice'] = new ChatNotice({ text: CHAT_NOTICE.createChatMsg });
+    } else {
+      this.children['chatNotice'] = new ChatNotice({ text: CHAT_NOTICE.selectChatMsg });
+    }
+
+    if (currentChat?.id) {
+      this.children['chatRightHeader'] = new ChatRightHeader({
+        src: currentChat.avatar ? `${URLS.RESOURCES}/${currentChat.avatar}` : CHAT_AVATAR_DATA.src,
+        title: currentChat.title
+      });
+      this.children['chatMessages'] = new ChatMessages();
+      this.children['chatSendMessageBlock'] = new ChatSendMessageBlock();
+      (this.children['chatNotice'] as Block).hide();
+    }
+
     if (chats?.length !== 0) {
       this.children['chatList'] = new ChatList({
-        chats: chats!
+        chats: chats!,
       });
     }
 
@@ -113,6 +116,5 @@ class Chat extends Block {
   }
 }
 
-//export default Chat;
 export default connect(state => ({ ...state.user }))(Chat);
 

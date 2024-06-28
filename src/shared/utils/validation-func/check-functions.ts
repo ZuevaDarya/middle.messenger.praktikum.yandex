@@ -3,7 +3,7 @@ import { VALIDATE_ERRORS } from '../../consts/validate-errors';
 
 type ReturnData = {
   isValid: boolean,
-  errorMsg: string
+  errorMsg?: string
 }
 
 export function checkName(data: string): ReturnData {
@@ -50,6 +50,5 @@ export function checkMessage(data: string): ReturnData {
   const regexp = /.+/;
   return {
     isValid: regexp.test(data),
-    errorMsg: VALIDATE_ERRORS.messageError,
   };
 }

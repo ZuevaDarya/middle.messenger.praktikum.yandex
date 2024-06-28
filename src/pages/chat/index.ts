@@ -17,66 +17,6 @@ import { validateFormData } from '../../shared/utils/validation-func/validate-fo
 import { validateSubmit } from '../../shared/utils/validation-func/validate-submit';
 
 export const chatPage = new Chat('div', {
-  avatar: new Avatar('div', {
-    src: '/img/avatar.png',
-    alt: 'Аватар профиля пользователя'
-  }),
-  chatHeaderLink: new ChatHeaderLink('a', {
-    text: 'Профиль',
-    page: 'profile',
-    src: '#',
-    events: {
-      click: () => {
-        removeChildrenInRoot('#app');
-        render('#app', profilePage);
-      }
-    }
-  }),
-  chatLeftFunctions: new ChatLeftFunctions(),
-  chatList: new ChatList('div', {
-    chatListItems: [
-      new ChatListItem('div', {
-        time: '12:30',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Иван Иванов' }),
-        chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'Круто!' }),
-      }),
-      new ChatListItem('div', {
-        time: '17:00',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Макс' }),
-        chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'До завтра!' }),
-      }),
-      new ChatListItem('div', {
-        time: '21:05',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Киноклуб' }),
-        chatListMessage: new ChatListItemMessage('p', { senderName: 'Вы', message: 'стикер' }),
-      }),
-      new ChatListItem('div', {
-        time: 'Пн',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Елена Половинкина' }),
-        chatListMessage: new ChatListItemMessage('p', { message: 'Можно на сегодня или завтра. Ты как?' }),
-        numMessage: '3'
-      }),
-      new ChatListItem('div', {
-        time: 'Пн',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Анна Блая' }),
-        chatListMessage: new ChatListItemMessage('p', { message: 'Изображение' }),
-        numMessage: '2'
-      }),
-      new ChatListItem('div', {
-        time: '1 Мая 2020',
-        avatar: new Avatar('div', { src: '/img/avatar.png', alt: 'Аватар чата' }),
-        chatTitle: new ChatTitle('p', { name: 'Design Destroyer' }),
-        chatListMessage: new ChatListItemMessage('p', {
-          message: 'В 2008 году художник Jon Rafman начал собирать...'
-        }),
-      }),
-    ],
-  }),
   chatAvatar: new Avatar('div', {
     src: '/img/avatar.png',
     alt: 'Аватар чата'
