@@ -7,6 +7,7 @@ const chatRightHeaderTmpl = `
       {{{ chatTitle }}}
     </div>
     <button class="chat-right-header__settings-btn"></button>
+    {{{ chatFunctions }}}
   </div>
 `;
 

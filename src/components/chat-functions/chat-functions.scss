@@ -1,0 +1,75 @@
+@import '../../shared/styles/variables.scss';
+
+.chat-functions {
+  position: absolute;
+  top: 70px;
+  right: 25px;
+  z-index: 25;
+
+  padding: 15px;
+
+  background-color: $chat-functions-bg;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  min-width: 210px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 7px 5px 7px 30px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(#31bdbe, 0.1);
+      border-radius: 5px;
+    }
+  }
+
+  &__item_add-user {
+    &::before {
+      position: absolute;
+      content: url('../../../public/icons/add-user.svg');
+      top: 2px;
+      left: 0;
+    }
+  }
+
+  &__item_delete-user {
+    &::before {
+      position: absolute;
+      content: url('../../../public/icons/delete-user.svg');
+      top: 2px;
+      left: 0;
+    }
+  }
+
+  &__item_change-avatar {
+    &::before {
+      position: absolute;
+      content: url('../../../public/icons/image.svg');
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__item_delete-chat {
+    &::before {
+      position: absolute;
+      content: url('../../../public/icons/delete-chat.svg');
+      top:  1px;
+      left: 0;
+    }
+  }
+
+  &_ds {
+    display: none;
+  }
+}

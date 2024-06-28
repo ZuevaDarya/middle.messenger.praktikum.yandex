@@ -20,3 +20,26 @@ export const CHAT_SEND_INPUT_DATA = {
   name: FORM_INPUT_NAMES.message,
   placeholder: 'Сообщение',
 }
+
+export const CHAT_FUNCTIONS_INFO = [
+  {
+    text: 'Добавить пользователя',
+    icon: '/icons/add-user.svg',
+    className: 'chat-functions__item_add-user'
+  },
+  {
+    text: 'Удалить пользователя',
+    icon: '/icons/delete-user.svg',
+    className: 'chat-functions__item_delete-user'
+  },
+  {
+    text: 'Изменить аватар чата',
+    icon: '/icons/image.svg',
+    className: 'chat-functions__item_change-avatar'
+  },
+  {
+    text: 'Удалить чат',
+    icon: '/icons/delete-chat.svg',
+    className: 'chat-functions__item_delete-chat'
+  },
+];

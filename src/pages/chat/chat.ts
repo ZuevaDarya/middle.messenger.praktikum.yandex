@@ -3,6 +3,7 @@ import store, { StoreEvents } from '../../shared/core/store';
 import Avatar from '../../components/avatar';
 import Block from '../../shared/core/block';
 import ChatController from '../../shared/controllers/chat-controller';
+import ChatFunctions from '../../components/chat-functions';
 import ChatHeaderLink from '../../components/chat-header-link';
 import ChatLeftFunctions from '../../components/chat-left-functions';
 import ChatList from '../../components/chat-list';
@@ -20,11 +21,13 @@ import Router from '../../shared/router/router';
 import { Routes } from '../../shared/consts/routes';
 import { URLS } from '../../shared/consts/api-consts';
 
+
 class Chat extends Block {
   constructor() {
     super('div', {
       chatHeaderLink: new ChatHeaderLink({ text: 'Профиль', url: Routes.Profile }),
       chatLeftFunctions: new ChatLeftFunctions(),
+      chatFunctions: new ChatFunctions()
     })
 
     store.on(StoreEvents.Updated, () => {

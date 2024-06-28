@@ -223,3 +223,8 @@ export interface IChatButton {
   attr?: object;
   events?: object;
 }
+
+export interface IChatFunctionsItem {
+  text: string;
+  className?: string;
+}

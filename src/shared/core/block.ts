@@ -168,6 +168,18 @@ export default class Block {
     }
   }
 
+  displayToggle(displayType: string) {
+    const element = this.getElement();
+
+    if (element !== undefined && element !== null) {
+      if (element.style.display === 'none') {
+        element.style.display = displayType;
+      } else {
+        element.style.display = 'none';
+      }
+    }
+  }
+
   setProps(nextProps: unknown) {
     if (!nextProps) {
       return;
