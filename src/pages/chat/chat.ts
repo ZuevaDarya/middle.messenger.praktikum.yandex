@@ -21,7 +21,6 @@ import Router from '../../shared/router/router';
 import { Routes } from '../../shared/consts/routes';
 import { URLS } from '../../shared/consts/api-consts';
 
-
 class Chat extends Block {
   constructor() {
     super('div', {
@@ -119,5 +118,5 @@ class Chat extends Block {
   }
 }
 
-export default connect(state => ({ ...state.user }))(Chat);
+export default connect(state => ({ ...state.user }))(Chat as typeof Block);
 

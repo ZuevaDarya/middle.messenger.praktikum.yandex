@@ -1,3 +1,4 @@
+import Block from '../src/shared/core/block';
 import Chat from '../src/pages/chat/chat';
 import Error400 from '../src/pages/error-400/error-400';
 import Error500 from '../src/pages/error-500/error-500';
@@ -9,13 +10,15 @@ import Registration from '../src/pages/registration/registration';
 import Router from '../src/shared/router/router';
 import { Routes } from '../src/shared/consts/routes';
 
-Router
-.use(Routes.Login, Login)
-.use(Routes.Registration, Registration)
-.use(Routes.Chats, Chat)
-.use(Routes.Profile, Profile)
-.use(Routes.ProfileData, ProfileData)
-.use(Routes.ProfilePassword, ProfilePassword)
-.use(Routes.Error400, Error400)
-.use(Routes.Error500, Error500)
-.start();
+document.addEventListener('DOMContentLoaded', () => {
+  Router
+    .use(Routes.Login, Login)
+    .use(Routes.Registration, Registration)
+    .use(Routes.Chats, Chat as unknown as typeof Block)
+    .use(Routes.Profile, Profile)
+    .use(Routes.ProfileData, ProfileData)
+    .use(Routes.ProfilePassword, ProfilePassword)
+    .use(Routes.Error400, Error400)
+    .use(Routes.Error500, Error500)
+    .start();
+});

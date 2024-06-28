@@ -1,4 +1,3 @@
-// import store, { StoreEvents } from '../../shared/core/store';
 import Block from '../../shared/core/block';
 import { CHAT_AVATAR_DATA } from '../../shared/consts/pages-data/chat-page-data';
 import ChatListItem from '../chat-list-item';
