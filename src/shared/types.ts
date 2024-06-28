@@ -192,3 +192,19 @@ export interface IProfileInput {
   attr?: object;
   events?: object;
 }
+
+export interface IChatTitle {
+  title: string;
+}
+
+
+export interface IChatListItemMessage {
+  lastMessage: string;
+  senderName?: string;
+}
+
+export interface IChatListItem extends IAvatar, IChatTitle {
+  lastMessage: LastMessageType;
+  countMessage?: string | null;
+}
+

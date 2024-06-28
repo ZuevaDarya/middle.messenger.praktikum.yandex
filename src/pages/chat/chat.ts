@@ -1,3 +1,4 @@
+import store, { StoreEvents } from '../../shared/core/store';
 import Avatar from '../../components/avatar';
 import Block from '../../shared/core/block';
 import ChatController from '../../shared/controllers/chat-controller';
@@ -5,44 +6,113 @@ import ChatHeaderLink from '../../components/chat-header-link';
 import ChatLeftFunctions from '../../components/chat-left-functions';
 import ChatList from '../../components/chat-list';
 import chatTmpl from './chat.tmpl';
+// import { ChatType } from '../../shared/types';
+import { connect } from '../../shared/utils/connect';
+import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import LoginController from '../../shared/controllers/login-controller';
+// import { IBlockProps } from '../../shared/types';
 import Popup from '../../components/popup';
+import { POPUPS_DATA } from '../../shared/consts/pages-data/popups-data';
 import Router from '../../shared/router/router';
 import { Routes } from '../../shared/consts/routes';
+import { URLS } from '../../shared/consts/api-consts';
 import { USER_AVATAR_DATA } from '../../shared/consts/pages-data/chat-page-data';
 
-export default class Chat extends Block {
+class Chat extends Block {
   constructor() {
     super('div', {
-      avatar: new Avatar({ ...USER_AVATAR_DATA }),
       chatHeaderLink: new ChatHeaderLink({ text: 'Профиль', url: Routes.Profile }),
       chatLeftFunctions: new ChatLeftFunctions(),
-      chatList: new ChatList(),
-      popup: new Popup(
-        {
-          text: 'Добавить',
-          title: 'Создать чат',
-          name: 'add_chat_title',
-          type: 'text'
-        }
-      ),
+      // chatList: new ChatList({
+      //   chats: []
+      // }),
       // chatAvatar: ,
       // chatTitle: ,
       // day: ,
       // messages: ,
       // chatSendMessageBlock: ,
-      events: {
-        load: () => {
-          Router.go(Routes.Chats);
-          LoginController.start();
-          ChatController.getUserChats();
-        },
-      }
+      // events: {
+      //   load: () => {
+      //     //Router.go(Routes.Chats);
+      //     LoginController.start();
+      //     ChatController.getUserChats();
+      //     console.log('s')
+      //   },
+      // }
     })
+
+    store.on(StoreEvents.Updated, () => {
+      this.setProps(store.getState());
+      this.redefineInit();
+    });
+  }
+
+  preRender() {
+    this.removeChildrenInRoot();
+    LoginController.start();
+    ChatController.getUserChats();
+  }
+
+  protected redefineInit() {
+    const user = store.getState().user;
+    const chats = store.getState().chats;
+
+    if (user.avatar) {
+      this.children['avatar'] = new Avatar({
+        alt: USER_AVATAR_DATA.alt,
+        src: `${URLS.RESOURCES}/${user.avatar}`
+      });
+    } else {
+      this.children['avatar'] = new Avatar({
+        alt: USER_AVATAR_DATA.alt,
+        src: USER_AVATAR_DATA.src
+      });
+    }
+
+    if (chats?.length !== 0) {
+      this.children['chatList'] = new ChatList({
+        chats: chats!
+      });
+    }
+
+    this.props['events'] = {
+      click: {
+        event: (e: Event) => {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+
+          this.children['popup'] = new Popup({
+            title: POPUPS_DATA.addChat.title,
+            buttonText: POPUPS_DATA.addChat.buttonText,
+            name: POPUPS_DATA.addChat.name,
+            type: POPUPS_DATA.addChat.type,
+            labelText: POPUPS_DATA.addChat.labelText,
+            events: {
+              submit: {
+                event: (e: Event) => {
+                  e.preventDefault();
+
+                  const data = getFormData(e.target as HTMLFormElement);
+                  ChatController.createChat(data.add_chat_title);
+                  alert('Чат доваблен!');
+                  Router.go(Router.currentRoute);
+                },
+                querySelector: 'form'
+              }
+            }
+          });
+        },
+        querySelector: '.chat-left-functions__button'
+      } as unknown as EventListener
+    }
   }
 
   redefineRender() {
     return chatTmpl;
   }
 }
+
+//export default Chat;
+export default connect(state => ({ ...state.user }))(Chat);
 

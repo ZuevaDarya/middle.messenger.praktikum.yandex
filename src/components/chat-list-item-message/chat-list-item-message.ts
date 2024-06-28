@@ -8,7 +8,7 @@ const chatListItemMessageTmpl = `
       </span>
     {{/if}}
 
-    {{message}}
+    {{lastMessage}}
   </p>
 `;
 

@@ -1,9 +1,8 @@
-import { IBlockProps, IState } from '../types';
 import EventBus from './event-bus';
 import { v4 as getUUID } from 'uuid';
 import Handlebars from 'handlebars';
+import { IBlockProps } from '../types';
 import isEqual from '../utils/is-equal';
-
 
 type Meta = {
   tagName: string;
@@ -170,7 +169,7 @@ export default class Block {
     }
   }
 
-  setProps(nextProps: IState) {
+  setProps(nextProps: unknown) {
     if (!nextProps) {
       return;
     }
