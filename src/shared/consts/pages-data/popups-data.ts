@@ -2,21 +2,21 @@ export const POPUPS_DATA = {
   addChat: {
     buttonText: 'Добавить',
     title: 'Создать чат',
-    name: 'add_chat_title',
+    name: 'title',
     type: 'text',
     labelText: 'Название чата'
   },
   addUser: {
     buttonText: 'Добавить',
     title: 'Добавить пользователя',
-    name: 'add_user_login',
+    name: 'login',
     type: 'text',
     labelText: 'Логин'
   },
   deleteUser: {
     buttonText: 'Удалить',
     title: 'Удалить пользователя',
-    name: 'delete_user_login',
+    name: 'login',
     type: 'text',
     labelText: 'Логин'
   },
@@ -26,5 +26,5 @@ export const POPUPS_DATA = {
     name: 'avatar',
     type: 'file',
     accept: 'image/*'
-  },
+  }
 };

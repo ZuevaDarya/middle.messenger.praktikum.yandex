@@ -13,7 +13,7 @@ export default class ChatListItem extends Block {
       avatar: new Avatar({ src: props.src, alt: CHAT_AVATAR_DATA.alt }),
       chatTitle: new ChatTitle({ title: props.title }),
       chatListMessage: new ChatListItemMessage({
-        lastMessage: props.lastMessage !== null ? props.lastMessage.content : '',
+        lastMessage: props.lastMessage !== null ? props.lastMessage?.content : '',
         senderName: props.lastMessage?.user.display_name
       }),
       countMessage: props.countMessage,

@@ -1,5 +1,6 @@
+import { ChatType, MessageType, UserType } from '../types';
 import { TypesWebsocketMessage, URLS, WebSocketActions } from '../consts/api-consts';
-import { MessageType } from '../types';
+import ChatController from './chat-controller';
 import Socket from '../core/socket';
 import store from '../core/store';
 
@@ -18,7 +19,7 @@ class SocketController {
     return this.chats.findIndex(chat => chat.chatId === chatId);
   }
 
-  getPrevious(chatId: number) {
+  private getPrevious(chatId: number) {
     const idx = this.findChatIndex(chatId);
     this.chats[idx].socket.sendData({ type: TypesWebsocketMessage.GetOld, content: '0' });
   }
@@ -44,16 +45,42 @@ class SocketController {
       newMessages.push(messages);
     }
 
-    store.setState(`chats.${chatId}`, newMessages.concat(oldMessages));
+    ChatController.getChatUserById(chatId);
+
+    const chats = store.getState().chats;
+    const chatIdInArray = chats!.findIndex(chat => chat.id === chatId);
+    const chatUsers = store.getState().currentChatUsers;
+
+    if (chatUsers?.length) {
+      const lastNewMessage = newMessages[0];
+      const senderUser = chatUsers?.filter(user => user.id === lastNewMessage.user_id)[0];
+
+      if (chatIdInArray > -1) {
+        const lastMessage = {
+          ...chats![chatIdInArray].last_message,
+          content: lastNewMessage.content,
+          time: lastNewMessage.time,
+          user: {
+            ...chats![chatIdInArray].last_message!.user,
+            display_name: senderUser.display_name
+          } as UserType
+        }
+
+        const chatWithLastMsg = { ...chats![chatIdInArray], last_message: lastMessage };
+        chats![chatIdInArray] = chatWithLastMsg as ChatType;
+        store.setState('chats', chats);
+      }
+    }
+
+    store.setState(`messages.${chatId}`, newMessages.concat(oldMessages));
   }
 
   private async connectToSocket(chatId: number, userId: number, token: string) {
     try {
-      const webSocket = new Socket(`${URLS.WSS_CHATS}${userId}/${chatId}/${token}`);
+      const webSocket = new Socket(`${URLS.WSS_CHATS}/${userId}/${chatId}/${token}`);
       this.chats.push({ chatId, socket: webSocket });
 
       await webSocket.openConnection();
-
       webSocket.on(WebSocketActions.Message, event => this.setMessage(chatId, event as MessageType));
       webSocket.on(WebSocketActions.Close, () => {
         const idx = this.findChatIndex(chatId);
@@ -65,7 +92,7 @@ class SocketController {
   }
 
   async open(chatId: number, token: string) {
-    if (this.findChatIndex(chatId)) {
+    if (this.chats.find(chat => chat.chatId === chatId)) {
       return;
     }
 

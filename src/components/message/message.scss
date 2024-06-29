@@ -18,9 +18,10 @@
 
   background-color: $message-bg-color;
   border-radius: 0 15px 15px 15px;
+  align-self: start;
 
   &_right {
-    float: right;
+    align-self: end;
     border-radius: 15px 15px 0 15px;
 
     background-color: $message-right-bg-color;

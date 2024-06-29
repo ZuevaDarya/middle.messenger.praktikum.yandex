@@ -58,7 +58,7 @@ export default class HTTPTransport {
 
       xhr.withCredentials = true;
 
-      if (method === Method.Get || method === Method.Delete || !data) {
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
         if (data instanceof FormData) {

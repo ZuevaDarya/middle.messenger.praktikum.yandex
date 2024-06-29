@@ -180,6 +180,14 @@ export default class Block {
     }
   }
 
+  addClass(className: string) {
+    const element = this.getElement();
+
+    if (element !== undefined && element !== null) {
+      element.classList.add(className);
+    }
+  }
+
   setProps(nextProps: unknown) {
     if (!nextProps) {
       return;
@@ -211,7 +219,13 @@ export default class Block {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach(eventName => {
-      if (typeof events[eventName] === 'object') {
+      if (Array.isArray(events[eventName])) {
+        events[eventName].forEach(objEvent => {
+          this.htmlElement
+            ?.querySelector((objEvent as unknown as PropEvent).querySelector)
+            ?.addEventListener(eventName, (objEvent as unknown as PropEvent).event);
+        });
+      } else if (typeof events[eventName] === 'object') {
         this.htmlElement
           ?.querySelector((events[eventName] as unknown as PropEvent).querySelector)
           ?.addEventListener(eventName, (events[eventName] as unknown as PropEvent).event);

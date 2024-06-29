@@ -8,7 +8,8 @@ export default class ChatFunctions extends Block {
     super('div', {
       chatFunctionsList: CHAT_FUNCTIONS_INFO.map(item => new ChatFunctionsItem({
         text: item.text,
-        className: item.className
+        className: item.className,
+        events: item.events
       }))
     });
   }

@@ -1,4 +1,4 @@
-import { ChatType, IState, UserType } from '../types';
+import { ChatType, IState, MessageType, UserType } from '../types';
 import EventBus from './event-bus';
 import { set } from '../utils/set';
 
@@ -11,7 +11,8 @@ class Store extends EventBus {
     user: {} as UserType,
     chats: [] as ChatType[],
     currentChat: {} as ChatType,
-    currentChatUsers: [] as UserType[]
+    currentChatUsers: [] as UserType[],
+    messages: [] as Record<number, MessageType[]>
   };
 
   getState() {

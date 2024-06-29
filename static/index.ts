@@ -22,3 +22,4 @@ document.addEventListener('DOMContentLoaded', () => {
     .use(Routes.Error500, Error500)
     .start();
 });
+

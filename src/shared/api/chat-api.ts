@@ -25,8 +25,8 @@ class ChatAPI extends BaseAPI {
     return this.get(`new/${chatId}`);
   }
 
-  uploadChatAvatar(chatId: number, avatar: unknown) {
-    return this.put('avatar', { chatId, avatar });
+  uploadChatAvatar(data: FormData) {
+    return this.put('avatar', data, {});
   }
 
   addUsersToChat(users: number[], chatId: number) {

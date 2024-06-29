@@ -27,9 +27,7 @@ class Socket extends EventBus {
 
   private onMessage(socket: WebSocket) {
     socket.addEventListener(WebSocketActions.Message, event => {
-      console.log('Получены данные', event.data);
       const data = JSON.parse(event.data);
-
       if (data.type === TypesWebsocketMessage.Pong) {
         return;
       }
@@ -60,7 +58,7 @@ class Socket extends EventBus {
     this.on(WebSocketActions.Close, () => {
       clearInterval(this.interval);
       this.resetInterval();
-    })
+    });
   }
 
   sendData(data: unknown) {
@@ -71,15 +69,19 @@ class Socket extends EventBus {
     }
   }
 
+  private onEventListeners(socket: WebSocket) {
+    this.onOpen(socket);
+    this.onMessage(socket);
+    this.onClose(socket);
+  }
+
   openConnection() {
-    this.onOpen(this.socket!);
-    this.onMessage(this.socket!);
-    this.onClose(this.socket!);
+    this.onEventListeners(this.socket!);
     this.onPing();
 
     return new Promise<void>(resolve => {
       this.on(WebSocketActions.Open, () => resolve());
-    })
+    });
   }
 
   close() {

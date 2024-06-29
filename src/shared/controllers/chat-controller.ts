@@ -10,13 +10,13 @@ class ChatController {
       const chats = JSON.parse(response);
 
       if (chats.length) {
-        chats.forEach(async (chat: ChatType) => {
-          const token = await this.getChatToken(chat.id);
-          await socketController.open(chat.id, token as unknown as string)
+        chats.map(async (chat: ChatType) => {
+          const token = JSON.parse(await this.getChatToken(chat.id)).token;
+          await socketController.open(chat.id, token);
         });
-      }
 
-      store.setState('chats', chats);
+        store.setState('chats', chats);
+      }
     } catch (error) {
       throw new Error(String(error));
     }
@@ -49,7 +49,7 @@ class ChatController {
   async getChatUserById(chatId: number) {
     try {
       const usersInfo = (await chatApi.getChatUserById(chatId)).response;
-      store.setState('currentChatUsers', usersInfo);
+      store.setState('currentChatUsers', JSON.parse(usersInfo));
     } catch (error) {
       throw new Error(String(error));
     }
@@ -63,14 +63,24 @@ class ChatController {
     }
   }
 
-  async uploadChatAvatar(chatId: number, avatar: unknown) {
+  async uploadChatAvatar(data: FormData) {
     try {
-      const response = await chatApi.uploadChatAvatar(chatId, avatar);
+      const response = await chatApi.uploadChatAvatar(data);
 
       if (response) {
-        store.setState('user.avatar', avatar);
+        const currentChat = JSON.parse(response.response);
+        store.setState('currentChat', currentChat);
+
+        const chats = store.getState().chats;
+        const chatIdInArray = chats!.findIndex(chat => chat.id === currentChat.id)
+
+        if (chatIdInArray > -1) {
+          chats![chatIdInArray] = { ...chats![chatIdInArray], ...currentChat };
+          store.setState('chats', chats);
+        }
       }
     } catch (error) {
+      alert('Файл слишком большой!');
       throw new Error(String(error));
     }
   }
@@ -93,6 +103,10 @@ class ChatController {
 
   async getChatToken(chatId: number) {
     return (await chatApi.getChatToken(chatId)).response;
+  }
+
+  setCurrentChat(chat: ChatType) {
+    store.setState('currentChat', chat);
   }
 }
 

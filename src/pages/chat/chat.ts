@@ -72,6 +72,10 @@ class Chat extends Block {
       this.children['chatMessages'] = new ChatMessages();
       this.children['chatSendMessageBlock'] = new ChatSendMessageBlock();
       (this.children['chatNotice'] as Block).hide();
+    } else {
+      (this.children['chatRightHeader'] as Block)?.hide();
+      (this.children['chatMessages'] as Block)?.hide();
+      (this.children['chatSendMessageBlock'] as Block)?.hide();
     }
 
     if (chats?.length !== 0) {

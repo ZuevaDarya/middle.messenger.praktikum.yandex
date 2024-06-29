@@ -211,6 +211,7 @@ export interface IChatListItem extends IAvatar, IChatTitle {
   lastMessage: LastMessageType;
   countMessage?: string | null;
   events?: object;
+  currentChat?: ChatType;
 }
 
 export interface IChatNotice {
@@ -227,4 +228,12 @@ export interface IChatButton {
 export interface IChatFunctionsItem {
   text: string;
   className?: string;
+  events?: object;
+}
+
+export interface IMessage {
+  text?: string;
+  src?: string;
+  time?: string;
+  className?: string | string[];
 }
