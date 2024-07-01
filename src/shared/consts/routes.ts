@@ -1,6 +1,6 @@
 export enum Routes {
   Login = '/',
-  Registration = '/registration',
+  Registration = '/sign-up',
   Chats = '/chats',
   Profile = '/profile',
   ProfileData = '/profile-data',
