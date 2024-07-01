@@ -1,6 +1,7 @@
 import { ChatType, MessageType, UserType } from '../types';
 import { TypesWebsocketMessage, URLS, WebSocketActions } from '../consts/api-consts';
 import ChatController from './chat-controller';
+// import { MessageType } from '../types';
 import Socket from '../core/socket';
 import store from '../core/store';
 
@@ -53,16 +54,16 @@ class SocketController {
 
     if (chatUsers?.length) {
       const lastNewMessage = newMessages[0];
-      const senderUser = chatUsers?.filter(user => user.id === lastNewMessage.user_id)[0];
+      const senderUser = chatUsers?.filter(user => user.id === lastNewMessage?.user_id)[0];
 
       if (chatIdInArray > -1) {
         const lastMessage = {
-          ...chats![chatIdInArray].last_message,
-          content: lastNewMessage.content,
-          time: lastNewMessage.time,
+          ...chats![chatIdInArray]?.last_message,
+          content: lastNewMessage?.content,
+          time: lastNewMessage?.time,
           user: {
-            ...chats![chatIdInArray].last_message!.user,
-            display_name: senderUser.display_name
+            ...chats![chatIdInArray].last_message?.user,
+            display_name: senderUser?.display_name
           } as UserType
         }
 
@@ -81,7 +82,11 @@ class SocketController {
       this.chats.push({ chatId, socket: webSocket });
 
       await webSocket.openConnection();
-      webSocket.on(WebSocketActions.Message, event => this.setMessage(chatId, event as MessageType));
+      webSocket.on(WebSocketActions.Message, event => {
+        if ((event as Record<string, unknown>).type !== 'user connected') {
+          this.setMessage(chatId, event as MessageType)
+        }
+      });
       webSocket.on(WebSocketActions.Close, () => {
         const idx = this.findChatIndex(chatId);
         this.chats.splice(idx, 1);

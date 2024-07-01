@@ -39,7 +39,7 @@ export default class Login extends Block {
     });
   }
 
-  preRender(): void {
+  preRender() {
     this.removeChildrenInRoot();
   }
 

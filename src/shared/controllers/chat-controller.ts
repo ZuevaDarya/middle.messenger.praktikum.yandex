@@ -4,6 +4,10 @@ import socketController from './socket-controller';
 import store from '../core/store';
 
 class ChatController {
+  private isResponseSuccess(response: XMLHttpRequest) {
+    return response.status >= 200 && response.status <= 300;
+  }
+
   async getUserChats() {
     try {
       const response = (await chatApi.getUserChats()).response;
@@ -25,7 +29,6 @@ class ChatController {
   async createChat(title: string) {
     try {
       await chatApi.createChat(title);
-      await this.getUserChats();
     } catch (error) {
       alert('Чат не был создан! Попробуйте создать чат еще раз!');
       throw new Error(String(error));
@@ -36,10 +39,9 @@ class ChatController {
     try {
       const response = await chatApi.deleteChatById(chatId);
 
-      if (response) {
+      if (this.isResponseSuccess(response)) {
         store.setState('currentChat', null);
       }
-
       await this.getUserChats();
     } catch (error) {
       throw new Error(String(error));
@@ -67,7 +69,7 @@ class ChatController {
     try {
       const response = await chatApi.uploadChatAvatar(data);
 
-      if (response) {
+      if (this.isResponseSuccess(response)) {
         const currentChat = JSON.parse(response.response);
         store.setState('currentChat', currentChat);
 

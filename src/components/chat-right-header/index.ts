@@ -63,7 +63,7 @@ export default class ChatRightHeader extends Block {
 
                     fileReader(e.target as HTMLFormElement, currentChat?.id);
                   },
-                  querySelector: 'form'
+                  querySelector: '.popup__form'
                 }
               }
             });
@@ -98,19 +98,24 @@ export default class ChatRightHeader extends Block {
                         alert('Пользователь не найден!');
                       } else {
                         const userToAdd = (users as UserType[]).filter(user => user.login === data.login)[0];
+                        const isInChat = currentChatUsers!.findIndex(user => user.id === userToAdd?.id) > -1;
 
                         if (!userToAdd) {
                           alert('Пользователь не найден!');
                         } else {
-                          ChatController.addUsersToChat([userToAdd.id], currentChat!.id);
-                          alert('Пользователь добавлен в чат!');
-                          store.setState('currentChatUsers', [...currentChatUsers!, userToAdd]);
-                          Router.go(Routes.Chats);
+                          if (!isInChat) {
+                            ChatController.addUsersToChat([userToAdd.id], currentChat!.id);
+                            alert('Пользователь добавлен в чат!');
+                            store.setState('currentChatUsers', [...currentChatUsers!, userToAdd]);
+                            Router.go(Routes.Chats);
+                          } else {
+                            alert('Пользователь уже в чате!');
+                          }
                         }
                       }
                     })
                   },
-                  querySelector: 'form'
+                  querySelector: '.popup__form'
                 }
               }
             });
@@ -150,13 +155,21 @@ export default class ChatRightHeader extends Block {
                       Router.go(Routes.Chats);
                     }
                   },
-                  querySelector: 'form'
+                  querySelector: '.popup__form'
                 }
               }
             });
           },
           querySelector: '.chat-functions__item_delete-user'
         },
+        {
+          event: () => {
+            ChatController.deleteChatById(currentChat!.id);
+            alert('Чат удален!');
+            Router.go(Routes.Chats);
+          },
+          querySelector: '.chat-functions__item_delete-chat'
+        }
       ] as unknown as EventListener
     }
   }

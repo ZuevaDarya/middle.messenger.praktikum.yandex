@@ -212,6 +212,7 @@ export interface IChatListItem extends IAvatar, IChatTitle {
   countMessage?: string | null;
   events?: object;
   currentChat?: ChatType;
+  chatId?: number;
 }
 
 export interface IChatNotice {

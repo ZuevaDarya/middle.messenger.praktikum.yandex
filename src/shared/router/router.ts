@@ -97,9 +97,15 @@ class Router {
       constPatname => constPatname === pathname
     );
 
-    if (!isConstRoute) {
+    if (!isConstRoute && !pathname.includes('index.html')) {
       this.onErrorPage();
     }
+
+    if (pathname.includes('index.html')) {
+      this.go(Routes.Login);
+      return this.routes.find(route => route.match(Routes.Login));
+    }
+
   }
 }
 

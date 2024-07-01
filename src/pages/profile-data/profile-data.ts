@@ -34,21 +34,6 @@ export default class ProfileData extends Block {
           }
         }
       }),
-      events: {
-        submit: {
-          event: (e: Event) => {
-            e.preventDefault();
-
-            const data = getFormData(e.target as HTMLFormElement) as unknown as UserProfileInfoType;
-            if (validateSubmit(e)) {
-              UserController.changeUserProfile(data);
-              alert('Данные обновлены!');
-              Router.go(Routes.Profile);
-            }
-          },
-          querySelector: 'form'
-        }
-      },
       button: new Button({ ...PROFILE_CHANGE_BUTTON })
     });
 
@@ -116,16 +101,31 @@ export default class ProfileData extends Block {
               submit: {
                 event: (e: Event) => {
                   e.preventDefault();
-
                   fileReader(e.target as HTMLFormElement);
-                  Router.go(Router.currentRoute);
                 },
-                querySelector: 'form'
+                querySelector: '.popup__form'
               }
             }
           });
         },
         querySelector: '.profile-avatar__container'
+      } as unknown as EventListener
+    }
+
+    this.props['events'] = {
+      submit: {
+        event: (e: Event) => {
+          e.preventDefault();
+
+          const data = getFormData(e.target as HTMLFormElement) as unknown as UserProfileInfoType;
+
+          if (validateSubmit(e)) {
+            UserController.changeUserProfile(data);
+            alert('Данные обновлены!');
+            Router.go(Routes.Profile);
+          }
+        },
+        querySelector: '.profile-content'
       } as unknown as EventListener
     }
   }

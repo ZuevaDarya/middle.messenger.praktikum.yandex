@@ -1,4 +1,3 @@
-import Block from '../src/shared/core/block';
 import Chat from '../src/pages/chat/chat';
 import Error400 from '../src/pages/error-400/error-400';
 import Error500 from '../src/pages/error-500/error-500';
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Router
     .use(Routes.Login, Login)
     .use(Routes.Registration, Registration)
-    .use(Routes.Chats, Chat as unknown as typeof Block)
+    .use(Routes.Chats, Chat)
     .use(Routes.Profile, Profile)
     .use(Routes.ProfileData, ProfileData)
     .use(Routes.ProfilePassword, ProfilePassword)

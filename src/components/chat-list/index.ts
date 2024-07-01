@@ -4,6 +4,7 @@ import ChatController from '../../shared/controllers/chat-controller';
 import ChatListItem from '../chat-list-item';
 import chatListTmpl from './chat-list';
 import { IChatList } from '../../shared/types';
+import Router from '../../shared/router/router';
 import { URLS } from '../../shared/consts/api-consts';
 
 export default class ChatList extends Block {
@@ -18,6 +19,7 @@ export default class ChatList extends Block {
           click: () => {
             ChatController.setCurrentChat(chat);
             ChatController.getChatUserById(chat.id);
+            Router.go(Router.currentRoute);
           }
         }
       })),

@@ -92,11 +92,9 @@ export default class Profile extends Block {
               submit: {
                 event: (e: Event) => {
                   e.preventDefault();
-
                   fileReader(e.target as HTMLFormElement);
-                  Router.go(Router.currentRoute);
                 },
-                querySelector: 'form'
+                querySelector: '.popup__form'
               }
             }
           });

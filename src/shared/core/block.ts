@@ -220,7 +220,7 @@ export default class Block {
 
     Object.keys(events).forEach(eventName => {
       if (Array.isArray(events[eventName])) {
-        events[eventName].forEach(objEvent => {
+        (events[eventName] as unknown as object[]).forEach(objEvent => {
           this.htmlElement
             ?.querySelector((objEvent as unknown as PropEvent).querySelector)
             ?.addEventListener(eventName, (objEvent as unknown as PropEvent).event);

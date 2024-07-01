@@ -12,7 +12,6 @@ import ChatNotice from '../../components/chat-notice';
 import ChatRightHeader from '../../components/chat-right-header';
 import ChatSendMessageBlock from '../../components/chat-send-message-block';
 import chatTmpl from './chat.tmpl';
-import { connect } from '../../shared/utils/connect';
 import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import LoginController from '../../shared/controllers/login-controller';
 import Popup from '../../components/popup';
@@ -103,11 +102,11 @@ class Chat extends Block {
                   e.preventDefault();
 
                   const data = getFormData(e.target as HTMLFormElement);
-                  ChatController.createChat(data.add_chat_title);
+                  ChatController.createChat(data.title);
                   alert('Чат доваблен!');
                   Router.go(Router.currentRoute);
                 },
-                querySelector: 'form'
+                querySelector: '.popup__form'
               }
             }
           });
@@ -122,5 +121,5 @@ class Chat extends Block {
   }
 }
 
-export default connect(state => ({ ...state.user }))(Chat as typeof Block);
+export default Chat;
 

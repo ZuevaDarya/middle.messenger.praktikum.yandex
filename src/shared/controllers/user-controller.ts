@@ -5,11 +5,15 @@ import store from '../core/store';
 import userApi from '../api/user-api';
 
 class UserController {
+  private isResponseSuccess(response: XMLHttpRequest) {
+    return response.status >= 200 && response.status <= 300;
+  }
+
   async changeUserProfile(userData: UserProfileInfoType) {
     try {
       const response = await userApi.changeUserProfile(userData);
 
-      if (response) {
+      if (this.isResponseSuccess(response)) {
         const userData = JSON.parse(response.response);
 
         store.setState('user', userData);
@@ -24,9 +28,10 @@ class UserController {
     try {
       const response = await userApi.changeUserAvatar(avatar);
 
-      if (response) {
+      if (this.isResponseSuccess(response)) {
         const userData = JSON.parse(response.response);
         store.setState('user', userData);
+        Router.go(Router.currentRoute);
       }
     } catch (error) {
       alert('Файл слишком большой!');
@@ -38,12 +43,12 @@ class UserController {
     try {
       const response = await userApi.changeUserPassord(data);
 
-      if (response) {
+      if (this.isResponseSuccess(response)) {
+        alert('Данные обновлены!');
         Router.go(Routes.Profile);
       } else {
         alert('Пароль не обновлен! Проверьте корректность введенных данных!');
       }
-
     } catch (error) {
       throw new Error(String(error));
     }
