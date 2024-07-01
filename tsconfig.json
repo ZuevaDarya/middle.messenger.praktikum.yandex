@@ -28,6 +28,7 @@
   },
   "include": [
     "src",
-    "static/index.ts"
+    "server.js",
+    "static"
   ]
 }

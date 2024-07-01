@@ -22,7 +22,7 @@ class LoginController {
   async signin(data: SigninType) {
     try {
       const response = await loginApi.signin(data);
-      console.log(response)
+
       if (this.isResponseSuccess(response)) {
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
         Router.go(Routes.Chats);
