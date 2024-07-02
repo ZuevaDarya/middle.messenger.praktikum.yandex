@@ -27,11 +27,15 @@ class LoginController {
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
         Router.go(Routes.Chats);
       } else {
-        alert('Вы не авторизированы! Проверьте корректность введенных данных!')
-        Router.go(Routes.Login);
+        throw JSON.parse(response.response).reason;
       }
     } catch (error) {
-      throw new Error(String(error));
+      if (error === 'User already in system') {
+        localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
+        Router.go(Routes.Chats);
+      } else {
+        alert(error);
+      }
     }
   }
 
@@ -43,34 +47,48 @@ class LoginController {
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
         Router.go(Routes.Chats);
       } else {
-        alert('Вы уже зарегистрированы!')
-        Router.go(Routes.Registration);
+        throw JSON.parse(response.response).reason;
       }
     } catch (error) {
-      throw new Error(String(error));
+      if (error === 'User already in system') {
+        localStorage.setItem(lOCAL_STORAGE.isSignin, 'true');
+        Router.go(Routes.Chats);
+      } else {
+        alert(error);
+      }
     }
   }
 
   async logout() {
     try {
       socketController.closeAllChatsSocket();
-      await loginApi.logout();
-      localStorage.setItem(lOCAL_STORAGE.isSignin, 'false');
-      Router.go(Routes.Login);
+
+      const response = await loginApi.logout();
+      if (this.isResponseSuccess(response)) {
+        localStorage.setItem(lOCAL_STORAGE.isSignin, 'false');
+        Router.go(Routes.Login);
+      } else {
+        throw JSON.parse(response.response).reason;
+      }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
   async getUserInfo() {
     try {
-      const userInfoResponse = (await loginApi.getUserInfo()).response;
-      const userInfo = JSON.parse(userInfoResponse);
-      store.setState('user', userInfo);
+      const response = await loginApi.getUserInfo();
 
-      return userInfoResponse;
+      if (this.isResponseSuccess(response)) {
+        const userInfo = JSON.parse(response.response);
+        store.setState('user', userInfo);
+
+        return response.response;
+      } else {
+        throw JSON.parse(response.response).reason;
+      }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
