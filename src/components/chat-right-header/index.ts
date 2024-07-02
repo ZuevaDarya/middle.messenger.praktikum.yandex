@@ -105,7 +105,6 @@ export default class ChatRightHeader extends Block {
                         } else {
                           if (!isInChat) {
                             ChatController.addUsersToChat([userToAdd.id], currentChat!.id);
-                            alert('Пользователь добавлен в чат!');
                             store.setState('currentChatUsers', [...currentChatUsers!, userToAdd]);
                             Router.go(Routes.Chats);
                           } else {
@@ -148,11 +147,6 @@ export default class ChatRightHeader extends Block {
                       alert('Пользователь не найден!');
                     } else {
                       ChatController.deleteUsersFromChat([...usersToDelete.map(user => user.id)], currentChat!.id);
-                      alert('Пользователь удален из чата!');
-
-                      const currentChatUserUpdate = currentChatUsers!.filter(user => user.id !== usersToDelete[0].id);
-                      store.setState('currentChatUsers', currentChatUserUpdate);
-                      Router.go(Routes.Chats);
                     }
                   },
                   querySelector: '.popup__form'
@@ -165,8 +159,6 @@ export default class ChatRightHeader extends Block {
         {
           event: () => {
             ChatController.deleteChatById(currentChat!.id);
-            alert('Чат удален!');
-            Router.go(Routes.Chats);
           },
           querySelector: '.chat-functions__item_delete-chat'
         }

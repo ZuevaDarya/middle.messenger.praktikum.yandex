@@ -1,5 +1,6 @@
 import chatApi from '../api/chat-api';
 import { ChatType } from '../types';
+import Router from '../router/router';
 import socketController from './socket-controller';
 import store from '../core/store';
 
@@ -31,9 +32,16 @@ class ChatController {
 
   async createChat(title: string) {
     try {
-      await chatApi.createChat(title);
+      const response = await chatApi.createChat(title);
+
+      if (this.isResponseSuccess(response)) {
+        alert('Чат доваблен!');
+        Router.go(Router.currentRoute);
+      } else {
+        throw JSON.parse(response.response).reason;
+      }
     } catch (error) {
-      alert('Чат не был создан! Попробуйте создать чат еще раз!');
+      alert(`Чат не был создан! Попробуйте создать чат еще раз! ${error}`);
     }
   }
 
@@ -42,14 +50,16 @@ class ChatController {
       const response = await chatApi.deleteChatById(chatId);
 
       if (this.isResponseSuccess(response)) {
+        alert('Чат удален!');
         store.setState('currentChat', null);
+        Router.go(Router.currentRoute);
       } else {
         throw JSON.parse(response.response).reason;
       }
 
       await this.getUserChats();
     } catch (error) {
-      alert(error);
+      alert(`Чат не был удален! Попробуйте удалить чат еще раз! ${error}`);
     }
   }
 
@@ -93,17 +103,36 @@ class ChatController {
 
   async addUsersToChat(users: number[], chatId: number) {
     try {
-      await chatApi.addUsersToChat(users, chatId);
+      const response = await chatApi.addUsersToChat(users, chatId);
+
+      if (this.isResponseSuccess(response)) {
+        alert('Пользователь добавлен в чат!');
+      } else {
+        throw JSON.parse(response.response).reason;
+      }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
   async deleteUsersFromChat(users: number[], chatId: number) {
     try {
-      await chatApi.deleteUsersFromChat(users, chatId);
+      const response = await chatApi.deleteUsersFromChat(users, chatId);
+
+      if (this.isResponseSuccess(response)) {
+        const currentChatUsers = store.getState().currentChatUsers;
+        const currentChatUserUpdate = users.map(userIdTODelete => (
+          currentChatUsers!.filter(user => user.id !== userIdTODelete)
+        ));
+
+        alert('Пользователь удален из чата!');
+        store.setState('currentChatUsers', currentChatUserUpdate[0]);
+        Router.go(Router.currentRoute);
+      } else {
+        throw JSON.parse(response.response).reason;
+      }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
