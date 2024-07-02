@@ -65,6 +65,12 @@ class LoginController {
 
       const response = await loginApi.logout();
       if (this.isResponseSuccess(response)) {
+        store.setState('user', {});
+        store.setState('chats', []);
+        store.setState('currentChat', {});
+        store.setState('currentChatUsers', []);
+        store.setState('messages', []);
+
         localStorage.setItem(lOCAL_STORAGE.isSignin, 'false');
         Router.go(Routes.Login);
       } else {

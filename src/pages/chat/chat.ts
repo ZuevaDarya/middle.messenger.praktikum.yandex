@@ -16,7 +16,6 @@ import { getFormData } from '../../shared/utils/validation-func/get-form-data';
 import LoginController from '../../shared/controllers/login-controller';
 import Popup from '../../components/popup';
 import { POPUPS_DATA } from '../../shared/consts/pages-data/popups-data';
-import Router from '../../shared/router/router';
 import { Routes } from '../../shared/consts/routes';
 import { URLS } from '../../shared/consts/api-consts';
 
@@ -36,7 +35,7 @@ class Chat extends Block {
 
   preRender() {
     this.removeChildrenInRoot();
-    LoginController.start();
+    LoginController.start().then(() => LoginController.getUserInfo());
     ChatController.getUserChats();
   }
 
@@ -103,8 +102,6 @@ class Chat extends Block {
 
                   const data = getFormData(e.target as HTMLFormElement);
                   ChatController.createChat(data.title);
-                  alert('Чат доваблен!');
-                  Router.go(Router.currentRoute);
                 },
                 querySelector: '.popup__form'
               }
