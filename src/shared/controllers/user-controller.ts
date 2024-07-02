@@ -18,9 +18,11 @@ class UserController {
 
         store.setState('user', userData);
         Router.go(Routes.Profile);
+      } else {
+        throw JSON.parse(response.response).reason;
       }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
@@ -35,7 +37,6 @@ class UserController {
       }
     } catch (error) {
       alert('Файл слишком большой!');
-      throw new Error(String(error));
     }
   }
 
@@ -47,10 +48,10 @@ class UserController {
         alert('Данные обновлены!');
         Router.go(Routes.Profile);
       } else {
-        alert('Пароль не обновлен! Проверьте корректность введенных данных!');
+        throw JSON.parse(response.response).reason;
       }
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 

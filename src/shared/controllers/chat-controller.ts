@@ -10,16 +10,19 @@ class ChatController {
 
   async getUserChats() {
     try {
-      const response = (await chatApi.getUserChats()).response;
-      const chats = JSON.parse(response);
+      const response = await chatApi.getUserChats();
 
-      if (chats.length) {
-        chats.map(async (chat: ChatType) => {
-          const token = JSON.parse(await this.getChatToken(chat.id)).token;
-          await socketController.open(chat.id, token);
-        });
+      if (this.isResponseSuccess(response)) {
+        const chats = JSON.parse(response.response);
 
-        store.setState('chats', chats);
+        if (chats.length) {
+          chats.map(async (chat: ChatType) => {
+            const token = JSON.parse(await this.getChatToken(chat.id)).token;
+            await socketController.open(chat.id, token);
+          });
+
+          store.setState('chats', chats);
+        }
       }
     } catch (error) {
       throw new Error(String(error));
@@ -31,7 +34,6 @@ class ChatController {
       await chatApi.createChat(title);
     } catch (error) {
       alert('Чат не был создан! Попробуйте создать чат еще раз!');
-      throw new Error(String(error));
     }
   }
 
@@ -41,10 +43,13 @@ class ChatController {
 
       if (this.isResponseSuccess(response)) {
         store.setState('currentChat', null);
+      } else {
+        throw JSON.parse(response.response).reason;
       }
+
       await this.getUserChats();
     } catch (error) {
-      throw new Error(String(error));
+      alert(error);
     }
   }
 
@@ -83,7 +88,6 @@ class ChatController {
       }
     } catch (error) {
       alert('Файл слишком большой!');
-      throw new Error(String(error));
     }
   }
 
