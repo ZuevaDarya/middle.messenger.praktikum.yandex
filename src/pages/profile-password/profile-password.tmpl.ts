@@ -3,6 +3,7 @@ import '../profile-data/profile-data.scss';
 
 const profilePasswordTmpl = `
   <div class="profile-container">
+    {{{ popup }}}
     <div class="profile">
       {{{ profileCloseButton }}}
       {{{ profileAvatar }}}

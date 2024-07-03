@@ -13,8 +13,8 @@ const chatListItemTmpl = `
 
     <div class="chat-list-item__right">
       <span class="chat-list-item__time">{{time}}</span>
-      {{#if numMessage}}
-        <span class="chat-list-item__num-message">{{numMessage}}</span>
+      {{#if countMessage}}
+        <span class="chat-list-item__num-message">{{countMessage}}</span>
       {{/if}}
     </div>
   </div>

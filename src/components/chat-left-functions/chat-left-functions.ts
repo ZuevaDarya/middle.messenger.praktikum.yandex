@@ -2,8 +2,7 @@ import './chat-left-functions.scss';
 
 const chatLeftFunctionsTmpl = `
   <div class='chat-left-functions'>
-    <button class='chat-left-functions__button'>Создать чат</button>
-
+    {{{ addChatButton }}}
     <form class='chat-left-functions__search'>
       <input type='search' class='chat-left-functions__search-input' placeholder='Поиск' />
       <button class='chat-left-functions__search-button'></button>

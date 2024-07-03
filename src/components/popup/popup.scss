@@ -1,0 +1,75 @@
+@import '../../shared/styles/variables.scss';
+
+.popup {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $popup-container-bg;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 100;
+
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    text-align: center;
+    background-color: $popup-bg;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+
+    padding: 40px 30px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  &__close {
+    position: relative;
+    display: block;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -10px;
+      width: 24px;
+      height: 3px;
+
+      background-color: $popup-close-color;
+      border-radius: 4px;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        background-color: $popup-close-hover-color;
+      }
+    }
+  }
+}

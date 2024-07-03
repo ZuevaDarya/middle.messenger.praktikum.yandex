@@ -27,10 +27,15 @@
 
     border: none;
     border-radius: 100px;
+  }
 
-    &:hover {
-      cursor: pointer;
-      background-color: $close-profile-btn-hover-color;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: $close-profile-btn-hover-bg-color;
+  }
+
+  &:hover &__button {
+    cursor: pointer;
+    background-color: $close-profile-btn-hover-color;
   }
 }

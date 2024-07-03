@@ -1,40 +1,41 @@
 import { Method } from '../consts/query-methods';
-import { queryStringify } from '../utils/query-stringify';
+import queryStringify from '../utils/query-stringify';
 
 type Options = {
   method: Method;
-  data?: Record<string, unknown>;
+  data?: unknown;
   headers?: Record<string, string>
   timeout?: number;
 }
 
 type InitOptions = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: InitOptions) => Promise<XMLHttpRequest>;
 
 export default class HTTPTransport {
-  get(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Get }, options.timeout);
-  }
+  get: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Get }, options.timeout)
+  );
 
-  post(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Post }, options.timeout);
-  }
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Post }, options.timeout)
+  );
 
-  put(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Put }, options.timeout);
-  }
+  put: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Method.Put }, options.timeout)
+  );
 
-  delete(url: string, options: InitOptions = {}): Promise<XMLHttpRequest> {
-    return this.request(url, { ...options, method: Method.Delete }, options.timeout);
-  }
+  delete: HTTPMethod = (url: string, options = {}) => (
+    this.request(url, { ...options, method: Method.Delete }, options.timeout)
+  )
 
-  request(url: string, options: Options = {method: Method.Get}, timeout = 5000): Promise<XMLHttpRequest> {
+  request(url: string, options: Options = { method: Method.Get }, timeout = 5000): Promise<XMLHttpRequest> {
     const { data, method, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
       if (method === Method.Get && data) {
-        url = `${url}${queryStringify(data)}`;
+        url = `${url}${queryStringify(data as Record<string, unknown>)}`;
       }
 
       xhr.open(method, url);
@@ -55,11 +56,16 @@ export default class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === Method.Get || method === Method.Delete || !data) {
+      xhr.withCredentials = true;
+
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(data));
+        if (data instanceof FormData) {
+          xhr.send(data);
+        } else {
+          xhr.send(JSON.stringify(data));
+        }
       }
     });
   }

@@ -9,5 +9,6 @@ export const FORM_INPUT_NAMES = {
   firstName: 'first_name',
   secondName: 'second_name',
   message: 'message',
-  displayName: 'display_name'
+  displayName: 'display_name',
+  addChatTitle: 'add_chat_title'
 }

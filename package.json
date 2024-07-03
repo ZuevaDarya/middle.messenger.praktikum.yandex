@@ -7,7 +7,7 @@
     "dev": "tsc & vite --port 3000 --host",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "npm i & npm run build & node server.cjs",
+    "start": "npm run build && node server.js",
     "lint": "eslint \"**/*.{ts,tsx}\" --fix"
   },
   "devDependencies": {

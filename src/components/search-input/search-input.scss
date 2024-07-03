@@ -2,7 +2,6 @@
 
 .search-input {
   width: 100%;
-  max-width: 700px;
 
   padding: 12px 25px;
 
@@ -20,7 +19,7 @@
     outline: 2px solid $chat-border-color;
   }
 
-  &_error {
-    filter: drop-shadow(0 0 2px $input-error-focus-outline-color);
-  }
+  // &_error {
+  //   filter: drop-shadow(0 0 2px $input-error-focus-outline-color);
+  // }
 }
