@@ -28,11 +28,12 @@ export default class Block {
   };
 
   protected meta: Meta;
-  protected props: IBlockProps;
   private readonly eventBus: () => EventBus;
 
+  props: IBlockProps;
   protected lists: IBlockProps = {};
   protected children: IBlockProps;
+
   private htmlElement?: HTMLElement;
 
   protected id = getUUID();

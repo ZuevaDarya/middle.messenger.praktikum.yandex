@@ -6,11 +6,11 @@ const jsdom = new JSDOM('<main></main>', {
   url: 'http://localhost:3000',
 });
 
-global.document = jsdom.document;
-global.DocumentFragment = jsdom.window.DocumentFragment;
 global.window = jsdom.window;
 Object.defineProperty(window, 'localStorage', {
   value: global.localStorage
 });
+global.document = jsdom.window.document;
+global.DocumentFragment = jsdom.window.DocumentFragment;
 
 global.XMLHttpRequest = sinon.useFakeXMLHttpRequest();
