@@ -13,10 +13,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.(ts|tsx)": [
-      "npm run lint:write",
-      "git add"
-    ]
+    "*.(ts|tsx)": "npm run lint"
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
