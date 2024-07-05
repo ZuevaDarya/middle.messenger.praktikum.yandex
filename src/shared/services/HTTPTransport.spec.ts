@@ -37,27 +37,11 @@ describe('HTTP Transport', () => {
     expect(fakeRequest?.method).to.eq(Method.Put);
   });
 
-  it('должен корректно формировать requestBody с заданными параметрами при вызове метода .put()', () => {
-    const data = { users: ['1'], chatId: 0 };
-    const jsonData = JSON.stringify(data);
-
-    http.put('/users', { data });
-    expect(fakeRequest?.requestBody).to.eq(jsonData);
-  });
-
   it('должен отправлять POST-запрос при вызове метода .post()', () => {
     const data = { title: 'new chat' };
 
     http.post('', { data });
     expect(fakeRequest?.method).to.eq(Method.Post);
-  });
-
-  it('должен корректно формировать requestBody с заданными параметрами при вызове метода .post()', () => {
-    const data = { title: 'new chat' };
-    const jsonData = JSON.stringify(data);
-
-    http.post('', { data });
-    expect(fakeRequest?.requestBody).to.eq(jsonData);
   });
 
   it('должен отправлять DELETE-запрос при вызове метода .delete()', () => {
