@@ -10,7 +10,6 @@
       "DOM",
       "DOM.Iterable"
     ],
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
@@ -26,6 +25,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "strictNullChecks": true,
+    "esModuleInterop": true
   },
   "include": [
     "src",
