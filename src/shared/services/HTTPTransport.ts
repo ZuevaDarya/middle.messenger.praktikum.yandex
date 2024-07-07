@@ -35,7 +35,7 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
 
       if (method === Method.Get && data) {
-        url = `${url}${queryStringify(data as Record<string, unknown>)}`;
+        url = `${url}?${queryStringify(data as Record<string, unknown>)}`;
       }
 
       xhr.open(method, url);

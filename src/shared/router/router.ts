@@ -100,12 +100,6 @@ class Router {
     if (!isConstRoute) {
       this.onErrorPage();
     }
-
-    // if (pathname.includes('index.html')) {
-    //   this.go(Routes.Login);
-    //   return this.routes.find(route => route.match(Routes.Login));
-    // }
-
   }
 }
 
